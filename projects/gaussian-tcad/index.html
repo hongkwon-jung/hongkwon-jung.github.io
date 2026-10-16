@@ -30,6 +30,9 @@
 <h3>응답을 결정하는 메커니즘</h3>
 <p>밴드 다이어그램, 전자·정공 전류 분해, SRH 재결합 분포로 해석한 결과, peak 전류는 단일 채널의 turn-on이나 두 전류의 단순 합이 아니라 n·p 채널의 동시 도통과 WSe<sub>2</sub> 쪽 캐리어 중첩이 결정했습니다.</p>
 <ul class="bl"><li>WSe<sub>2</sub> SRH 수명을 100배 바꿔도 적분 재결합은 비례해 변했지만 peak 전류 변화는 0.03% 미만</li><li>따라서 재결합 분포는 전류 기여자가 아니라 n·p 캐리어 중첩 영역의 공간·바이어스 지표로 해석</li></ul>
+<h3>구조 변수별 응답 변화</h3>
+<figure><img src="../../assets/img/tcad_fig5.png" alt=""><figcaption><b>Fig. 5</b> contact 일함수와 유효 채널 길이의 영향. (a) 비대칭 전극 배치 (b) 대칭 S/D 전극 (c) 대칭 일함수 4.5, 4.7, 4.9 eV (d) WSe<sub>2</sub> 유효 길이(IGZO 15 µm 고정) (e) IGZO 유효 길이(WSe<sub>2</sub> 25 µm 고정) (f) WSe<sub>2</sub>/Pd 접촉 부근 정공 밀도</figcaption></figure>
+<ul class="bl"><li>Al(IGZO 측)/Pd(WSe<sub>2</sub> 측) 배치에서 뚜렷한 peak가 나타나고, 배치를 뒤바꾸면 peak가 강하게 억제됨. Al/Al, Pd/Pd 대칭 전극에서도 한쪽 캐리어 공급이 약해져 peak가 약화</li><li>단일 대칭 전극은 일함수 4.7 eV에서 IGZO 전자와 WSe<sub>2</sub> 정공 공급이 균형을 이뤄 peak가 가장 뚜렷하고, 4.5 eV와 4.9 eV에서는 감소</li><li>peak 형성은 유효 채널 길이에 좌우되지 않음. WSe<sub>2</sub> 유효 길이를 25 µm에서 1 µm로 줄이면 오른쪽 valley 전류가 약 2자릿수, I<sub>P</sub>가 약 6배 증가</li></ul>
 <h3>구조 설계 지침</h3>
 <div class="tscroll"><table class="dt"><tr><th>지표</th><th>기준 구조</th><th>단층 WSe<sub>2</sub></th><th>변화</th></tr><tr><td class="">평균 PVR</td><td class="">4.06×10<sup>6</sup></td><td class="">3.66×10<sup>7</sup></td><td class="em">약 9.0배</td></tr><tr><td class="">FWHM</td><td class="">1.042&nbsp;V</td><td class="">0.633&nbsp;V</td><td class="em">−39.3%</td></tr><tr><td class="">I<sub>P</sub></td><td class="">2.14×10<sup>−7</sup> A</td><td class="">1.32×10<sup>−8</sup> A</td><td class="em">약 1/16</td></tr></table></div>
 <figure><img src="../../assets/img/tcad_fig9.png" alt=""><figcaption><b>Fig. 9</b> (a) 구조 변수별 정규화 영향도. contact 일함수가 5개 지표에서 1순위 (b) FWHM과 평균 PVR의 설계 공간</figcaption></figure>
@@ -57,180 +60,23 @@
 (sdegeo:set-contact (list (car (find-edge-id (position 30 0 0)))) &quot;ggg&quot;)
 
 (sdeio:save-tdr-bnd (get-body-list) &quot;n@node@_bnd.tdr&quot;)
-</code></pre></div><div class="cpane" data-pane="sdevice" hidden><div class="cmeta">Sentaurus Device. 물리 모델, 계면·벌크 trap, 비국소 터널링, 바이어스 순서를 정의 <a href="../../assets/code/sdevice_des.cmd" download>파일 받기</a></div><pre><code>#define W_g_c_ <mark>[비공개]</mark>
-#define W_g_v_ <mark>[비공개]</mark>
-#define W_mt_e_ <mark>[비공개]</mark>
-#define W_mt_h_ <mark>[비공개]</mark>
-
-#define I_g_c_ <mark>[비공개]</mark>
-#define I_g_v_ <mark>[비공개]</mark>
-#define I_mt_e_ <mark>[비공개]</mark>
-#define I_mt_h_ <mark>[비공개]</mark>
-
-#define C_g_c_ <mark>[비공개]</mark>
-#define C_g_v_ <mark>[비공개]</mark>
-#define C_mt_e_ <mark>[비공개]</mark>
-#define C_mt_h_ <mark>[비공개]</mark>
-
-#define ACd   @[expr {pow(@IACd@, 3.0/2.0)/1e+@COR@}]@
-#define DCd   @[expr {pow(@IDCd@, 3.0/2.0)/1e+@COR@}]@
-#define IDDC  @[expr {pow(@DDC@, 2.0/3.0)/1e+@COR_D@}]@
-
-#define WAC   @[expr {pow(@WIAC@, 3.0/2.0)/1e+@COR@}]@
-#define WACd  @[expr {pow(@WIACd@, 3.0/2.0)/1e+@COR@}]@
-#define WDC   @[expr {pow(@WIDC@, 3.0/2.0)/1e+@COR@}]@
-#define WDCd  @[expr {pow(@WIDCd@, 3.0/2.0)/1e+@COR@}]@
-#define WIAAC @[expr {pow(@WAAC@, 2.0/3.0)/1e+@COR_D@}]@
-
-#define WIIAC  @[expr {(@IAC@+@WIAC@)/2}]@
-#define WIIAM  <mark>[비공개]</mark>
-#define WIIAS  @[expr {(<mark>[비공개]</mark> + @WIAS@)/2}]@
-#define WIIACd @[expr {(@IACd@+@WIACd@)/2}]@
-#define WIIAMd @[expr {(@IAMd@+@WIAMd@)/2}]@
-#define WIIASd @[expr {(@IASd@+@WIASd@)/2}]@
-#define WIIDC  @[expr {(@IDC@+@WIDC@)/2}]@
-#define WIIDM  <mark>[비공개]</mark>
-#define WIIDS  @[expr {(@s_d_e@+@WIDS@)/2}]@
-#define WIIDCd @[expr {(@IDCd@+@WIDCd@)/2}]@
-#define WIIDMd @[expr {(@IDMd@+@WIDMd@)/2}]@
-#define WIIDSd @[expr {(@IDSd@+@WIDSd@)/2}]@
+</code></pre></div><div class="cpane" data-pane="sdevice" hidden><div class="cmeta">Sentaurus Device. 전극 조건, 출력 변수, 수치 해법, 바이어스 순서를 정의. 물성·물리 모델, trap, 터널링 설정은 비공개 <a href="../../assets/code/sdevice_des.cmd" download>파일 받기</a></div><pre><code># Material parameters, physical models, trap and tunneling settings are not published.
 
 File {
   Grid= &quot;@tdr@&quot;
   Parameter= &quot;@parameter@&quot;
-  PMIPath = &quot;@pwd@/lib&quot;
   Current= &quot;@plot@&quot;
   Plot= &quot;@tdrdat@&quot;
   Output= &quot;@log@&quot;
-  TrappedCarPlotFile=&quot;n@node@_trap&quot;
-  NonLocalPlot= &quot;n@node@_NonLocal&quot;	
 }
 
 Electrode {
   { Name=&quot;sss&quot; Voltage=0. material=&quot;Aluminum&quot; Schottky }
   { Name=&quot;ddd&quot; Voltage=0. material=&quot;Gold&quot; Schottky }
-  { Name=&quot;ggg&quot; Voltage=0. Workfunction=<mark>[비공개]</mark>}
+  { Name=&quot;ggg&quot; Voltage=0. Workfunction=<mark>[REDACTED]</mark>}
 }
 
-Physics {
-  Temperature = 300.00
-  AreaFactor = 6e+02
-  Fermi
-  EffectiveIntrinsicDensity(noBandGapNarrowing)
-  Recombination(SRH)
-    eBarrierTunneling &quot;NLM_Source&quot; 
-    hBarrierTunneling &quot;NLM_Source&quot; 
-    eBarrierTunneling &quot;NLM_Drain&quot;
-    hBarrierTunneling &quot;NLM_Drain&quot;
-    eBarrierTunneling &quot;NLM_channel&quot; (Band2Band=Full)
-    hBarrierTunneling &quot;NLM_channel&quot; (Band2Band=Full)
-}
-
-Physics (material=&quot;aIGZO&quot;) {
-  BandTailDOS(Exponent)
-  Mobility ( 
-    ConstantMobility
-    eHighFieldSaturation
-    Enormal(
-      pmi_percolationmobility3
-    )
-  )
-  Traps(
-    (Acceptor Gaussian    fromCondBand Conc=ACd    EnergyMid=@IAMd@ EnergySig=@IASd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Gaussian    fromValBand  Conc=DCd    EnergyMid=@IDMd@ EnergySig=@IDSd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-
-    (Donor    Gaussian    fromValBand  Conc=@DDC@  EnergyMid=@DDM@ EnergySig=@DDS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-  )
-}
-
-Physics (MaterialInterface=&quot;aIGZO/AluminumOxide&quot; ) { 
-  Traps( 
-    (Acceptor Exponential fromCondBand Conc=@IAC@  EnergyMid=@IAM@  EnergySig=@IAS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Acceptor Gaussian    fromCondBand Conc=@IACd@ EnergyMid=@IAMd@ EnergySig=@IASd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Exponential fromValBand  Conc=@IDC@  EnergyMid=@IDM@  EnergySig=@IDS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Gaussian    fromValBand  Conc=@IDCd@ EnergyMid=@IDMd@ EnergySig=@IDSd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-
-    (Donor    Gaussian    fromValBand  Conc=IDDC   EnergyMid=@DDM@ EnergySig=@DDS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-
-    (FixedCharge Conc=@IFC@)
-  )
-}
-
-Physics (MaterialInterface=&quot;WSe2/aIGZO&quot; ) { 
-  HeteroInterface
-  Thermionic
-
-  Traps( 
-    (Acceptor Exponential fromCondBand Conc=WIIAC   EnergyMid=WIIAM  EnergySig=WIIAS
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Acceptor Gaussian    fromCondBand Conc=WIIACd  EnergyMid=WIIAMd EnergySig=WIIASd
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Exponential fromValBand  Conc=WIIDC   EnergyMid=WIIDM  EnergySig=WIIDS
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Gaussian    fromValBand  Conc=WIIDCd  EnergyMid=WIIDMd EnergySig=WIIDSd
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-  )
-}
-
-Physics (material=&quot;WSe2&quot;) {
-  Mobility(
-    ConstantMobility
-    eHighFieldSaturation
-    Enormal(
-      pmi_percolationmobility3
-    )
-  )
-  Traps( 
-    (Acceptor Exponential fromCondBand Conc=WAC     EnergyMid=@WIAM@  EnergySig=@WIAS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Acceptor Gaussian    fromCondBand Conc=WACd    EnergyMid=@WIAMd@ EnergySig=@WIASd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Exponential fromValBand  Conc=WDC     EnergyMid=@WIDM@  EnergySig=@WIDS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Gaussian    fromValBand  Conc=WDCd    EnergyMid=@WIDMd@ EnergySig=@WIDSd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-
-    (Acceptor Gaussian    fromCondBand Conc=@WAAC@  EnergyMid=@WAAM@  EnergySig=@WAAS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-  )
-}
-
-Physics (MaterialInterface=&quot;WSe2/AluminumOxide&quot; ) { 
-  Traps( 
-    (Acceptor Exponential fromCondBand Conc=@WIAC@  EnergyMid=@WIAM@  EnergySig=@WIAS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Acceptor Gaussian    fromCondBand Conc=@WIACd@ EnergyMid=@WIAMd@ EnergySig=@WIASd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Exponential fromValBand  Conc=@WIDC@  EnergyMid=@WIDM@  EnergySig=@WIDS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-    (Donor    Gaussian    fromValBand  Conc=@WIDCd@ EnergyMid=@WIDMd@ EnergySig=@WIDSd@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-
-    (Acceptor Gaussian    fromCondBand Conc=WIAAC   EnergyMid=@WAAM@ EnergySig=@WAAS@
-      eXsection=<mark>[비공개]</mark> hXsection=<mark>[비공개]</mark> )
-
-    (FixedCharge Conc=@WIFC@)
-  )
-}
-
-TrappedCarDistrPlot {
-  Material=&quot;aIGZO&quot; {( 17.5 0.095 )}
-  MaterialInterface=&quot;aIGZO/AluminumOxide&quot; {( 17.5 0.09 )}
-  Material=&quot;WSe2&quot; {( 42.5 0.0925 )}
-  MaterialInterface=&quot;WSe2/AluminumOxide&quot; {( 42.5 0.09 )}
-  MaterialInterface=&quot;WSe2/aIGZO&quot; {( 30 0.0925 )}
-  MaterialInterface=&quot;WSe2/aIGZO&quot; {( 29 0.1 )}
-  MaterialInterface=&quot;WSe2/aIGZO&quot; {( 25.5 0.1 )}
-  MaterialInterface=&quot;WSe2/aIGZO&quot; {( 25 0.1 )}
-}
+# Physics { ... }  <mark>[REDACTED]</mark>
 
 Plot {
   Potential eQuasiFermi hQuasiFermi
@@ -303,15 +149,6 @@ Plot {
   
 }
 
-NonLocalPlot ((2.5 0.1 0) (2.5 0.095 0) (57.5 0.095 0) (57.5 0.0925 0) (29.95 0.0925 0) (30.05 0.0925 0)) { 
-   eDensity hDensity
-   ConductionBandEnergy ValenceBandEnergy eQuasiFermiEnergy hQuasiFermiEnergy
-   eBarrierTunneling hBarrierTunneling
-   ElectrostaticPotential
-   CBBarrierLowering VBBarrierLowering
-   CBEnergywithLowering VBEnergywithLowering
-}
-
 Math {
   NumberOfThreads=4
   ParallelLicense (Wait)
@@ -334,31 +171,8 @@ Math {
   AutoCNPMinStepFactor=0.0 
   AutoNPMinStepFactor=0.0 
   -PlotLoadable
-  TrapDLN=64
-  -FermiBandTailStatistics
-  SimpleBandTailIntegration
   -CheckRhsAfterUpdate
 
-    NonLocal &quot;NLM_Source&quot; (
-        Electrode = &quot;sss&quot;
-        Length = 5e-7
-        Digits = 3
-        EnergyResolution = 0.002
-    )
-
-    NonLocal &quot;NLM_Drain&quot; (
-        Electrode = &quot;ddd&quot;
-        Length = 5e-7
-        Digits = 3
-        EnergyResolution = 0.002
-    )
-
-    NonLocal &quot;NLM_channel&quot; (
-        MaterialInterface=&quot;aIGZO/WSe2&quot;
-        Length = 5e-7
-        Digits = 3
-        EnergyResolution = 0.002
-    )
 }
 
 Solve {

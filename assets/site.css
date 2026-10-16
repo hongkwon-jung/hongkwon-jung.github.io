@@ -340,6 +340,7 @@ ol.blk b{color:var(--blue)}
 .vbody h2+h3{margin-top:4px}
 .vbody p{color:var(--ink2)}
 .vbody p+p{margin-top:10px}
+.vbody figure+p,.vbody .fig2+p:not(.vnote),.vbody ul+figure{margin-top:14px}
 .vbody ul.bl{list-style:none;margin-top:8px}
 .vbody ul.bl li{position:relative;padding:6px 0 6px 18px;color:var(--ink2)}
 .vbody ul.bl li:before{content:'';position:absolute;left:2px;top:15px;width:6px;height:6px;background:var(--blue)}
