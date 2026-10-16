@@ -11,4 +11,28 @@
       links.forEach(function(a){a.classList.remove('on')});var a=map[en.target.id];if(a)a.classList.add('on');}})},{rootMargin:'-20% 0px -70% 0px'});
     document.querySelectorAll('.psec').forEach(function(s){io.observe(s)});
   }
+  // project tabs (회로 설계 페이지)
+  var tl=document.querySelector('.ptabs');
+  if(tl){
+    var tabs=[].slice.call(tl.querySelectorAll('[role=tab]'));
+    var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'))});
+    var anchor=document.querySelector('.tanchor'), bar=document.querySelector('.topbar');
+    function toTop(){var off=bar?bar.offsetHeight:0;if(anchor.getBoundingClientRect().top<off){var y=anchor.getBoundingClientRect().top+window.pageYOffset-off;try{window.scrollTo({top:y,behavior:'instant'});}catch(err){window.scrollTo(0,y);}}}
+    function act(i,opt){opt=opt||{};
+      tabs.forEach(function(t,j){var on=j===i;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;panels[j].hidden=!on;});
+      if(opt.focus)tabs[i].focus();
+      if(opt.hash)history.replaceState(null,'',i===0?location.pathname+location.search:'#'+panels[i].id);
+      toTop();}
+    function idx(id){for(var k=0;k<panels.length;k++){if(panels[k].id===id)return k;}return -1;}
+    tl.addEventListener('click',function(e){var b=e.target.closest('[role=tab]');if(!b)return;act(tabs.indexOf(b),{hash:true});});
+    tl.addEventListener('keydown',function(e){var i=tabs.indexOf(document.activeElement);if(i<0)return;var n=null;
+      if(e.key==='ArrowRight')n=(i+1)%tabs.length;else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;
+      if(n!==null){e.preventDefault();act(n,{focus:true,hash:true});}});
+    document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var k=idx(a.getAttribute('href').slice(1));
+      if(k<0)return;e.preventDefault();act(k,{hash:true});});
+    window.addEventListener('hashchange',function(){var k=idx(location.hash.slice(1));if(k>=0)act(k);});
+    var k0=idx(location.hash.slice(1));act(k0>=0?k0:0);
+    if(k0>=0)window.addEventListener('load',function(){setTimeout(toTop,0);});
+  }
 })();
