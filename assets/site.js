@@ -11,6 +11,20 @@
       links.forEach(function(a){a.classList.remove('on')});var a=map[en.target.id];if(a)a.classList.add('on');}})},{rootMargin:'-20% 0px -70% 0px'});
     document.querySelectorAll('.psec').forEach(function(s){io.observe(s)});
   }
+  // section rail highlight (v3 project pages)
+  var rl=document.querySelectorAll('.vrail a');
+  if(rl.length&&'IntersectionObserver' in window){
+    var rm={};rl.forEach(function(a){rm[a.getAttribute('href').slice(1)]=a});
+    var ro=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){
+      rl.forEach(function(a){a.classList.remove('on')});var a=rm[en.target.id];if(a)a.classList.add('on');}})},{rootMargin:'-30% 0px -60% 0px'});
+    document.querySelectorAll('.vsec[id]').forEach(function(s){ro.observe(s)});
+  }
+  // reference filter
+  document.querySelectorAll('.reffilter').forEach(function(inp){
+    var panel=inp.closest('.tpanel');
+    inp.addEventListener('input',function(){var q=inp.value.trim().toLowerCase();
+      panel.querySelectorAll('ol.refs li').forEach(function(li){li.hidden=q&&li.textContent.toLowerCase().indexOf(q)<0;});});
+  });
   // circuit viewer
   document.querySelectorAll('.cview').forEach(function(cv){
     var btns=[].slice.call(cv.querySelectorAll('.cv-btns button')), views=[].slice.call(cv.querySelectorAll('.cv-view'));
