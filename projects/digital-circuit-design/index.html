@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>회로 설계 프로젝트 | 정홍권</title>
+<meta name="description" content="차종과 실시간 주차 현황으로 최우선 자리를 배정하고 돌발 상황에서 재배정하는 시스템을 FSM으로 설계해 조합논리 IC 브레드보드로 구현한 프로젝트입니다.">
+<meta property="og:title" content="회로 설계 프로젝트 | 정홍권">
+<meta property="og:description" content="차종과 실시간 주차 현황으로 최우선 자리를 배정하고 돌발 상황에서 재배정하는 시스템을 FSM으로 설계해 조합논리 IC 브레드보드로 구현한 프로젝트입니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2315212C'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EHJ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<div class="topbar texture"><div class="in"><a class="nm" href="../../index.html">Hong-Kwon Jung</a>
+<nav><a href="../../index.html">HOME</a><a href="../../projects.html">PROJECTS</a><a href="https://github.com/hongkwon-jung">GITHUB</a></nav></div></div>
+<header class="phead"><div class="eyebrow">CIRCUIT · DIGITAL LOGIC</div><h1>회로 설계 프로젝트</h1><div class="en">교과 팀 프로젝트 4건 · 대표 과제 자동 주차 배정 시스템</div><p class="sum">차종·장애 여부와 실시간 주차 현황으로 최우선 자리를 배정하고, 이동 중 자리 변동이나 주차 실패 시 현재 위치를 기준으로 재배정하는 시스템을 조합논리 IC로 구현했습니다.</p></header><div class="metarow"><div><div class="k">PERIOD</div><div class="v">2024.03 – 2025.12</div></div><div><div class="k">STATUS</div><div class="v"><span class="status">Complete</span></div></div><div><div class="k">ROLE</div><div class="v">4건 중 3건 팀장</div></div><div><div class="k">TEAM</div><div class="v">각 4인</div></div></div><div class="pbtns"><a class="pri" href="#system">시스템</a><a class="" href="#design">설계</a><a class="" href="#build">구현</a></div><section class="hero"><div class="box"><div class="fig"><img src="../../assets/img/circ_system.jpg" alt="자동 주차 배정 시스템 브레드보드"></div><div class="sumbox"><h2>프로젝트 요약</h2><div class="it"><div class="k">개요</div><div class="v">조합논리 IC 기반 자동 주차 배정 시스템 설계와 구현</div></div><div class="it"><div class="k">목적</div><div class="v">차종과 실시간 현황에 따른 최우선 자리 배정과 돌발 상황 재배정</div></div><div class="it"><div class="k">결과</div><div class="v">Controller 8상태 FSM, Datapath 9블록을 브레드보드로 구현해 시연</div></div></div></div></section><div class="pbody"><aside class="toc"><b>Contents</b><a href="#overview">Overview</a><a href="#system">System</a><a href="#design">Design</a><a href="#build">Build</a><a href="#lessons">Lessons</a></aside><div><section class="psec" id="overview"><div class="no">01 · OVERVIEW</div><h2>교과 팀 프로젝트 4건</h2><div class="tscroll"><table class="dt"><tr><th>학기</th><th>프로젝트</th><th>과목</th><th>역할</th></tr><tr><td class="">2024-1</td><td class="">블루투스를 이용한 임산부 배려석</td><td class="">기초회로실험및설계1</td><td class="">팀장</td></tr><tr><td class="">2024-2</td><td class="">Smart Elevator</td><td class="">기초회로실험및설계2</td><td class="">팀장</td></tr><tr><td class="">2025-1</td><td class="">자동 주차 배정 시스템</td><td class="">전자재료물성실험및설계1</td><td class="">팀장</td></tr><tr><td class="">2025-2</td><td class="">최단 시간 경로 내비게이션</td><td class="">전자재료물성실험및설계2</td><td class="">팀원</td></tr></table></div></section><section class="psec" id="system"><div class="no">02 · SYSTEM</div><h2>대표 과제: 자동 주차 배정 시스템</h2>
+<p>6칸 주차장(장애인 2, 일반 2, 전기차 1, 경차 1)에서 차종과 장애 여부의 6가지 경우에 우선순위를 정하고, 이동 중 빈자리 발생, 배정 자리 점유, 여름철 그늘 자리 같은 돌발 상황까지 처리하는 배정 시스템을 설계했습니다.</p>
+<figure><img src="../../assets/img/circ_flow.png" alt=""><figcaption><b>시스템 동작 순서도</b> 시스템 사용 여부 → 1 – 3순위 탐색, 전기차 대기 → 배정 완료 또는 실패 → 주차 결과와 자리 변동을 반영해 자리 현황 갱신</figcaption></figure></section><section class="psec" id="design"><div class="no">03 · DESIGN</div><h2>구조 정의와 분담</h2><ul class="bl"><li>시스템을 Controller(8상태 FSM)와 Datapath(9개 블록)로 나누고 ASMD 차트로 상태 전이를 정리해 파트 분담</li><li>기본 동작을 Verilog로 먼저 구현해 공유하고, Verilog와 SPICE로 제작 전 동작 검증</li><li>제안발표 지적(돌발 상황 부족)에 FAIL 신호와 현재 위치 기준 재탐색을 추가해 설계 확장</li></ul></section><section class="psec" id="build"><div class="no">04 · BUILD</div><h2>브레드보드 구현</h2>
+<figure><img src="../../assets/img/circ_demo.jpg" alt=""><figcaption><b>브레드보드 시연</b> Controller 8개 상태(S0 – S7)를 LED로 표시</figcaption></figure>
+<ul class="bl"><li>구현 중 전압 강하는 파워서플라이 2채널과 AND 게이트로 해결</li><li>active-low 소자와 설계 극성의 불일치는 보완 회로로 해결</li></ul></section><section class="psec" id="lessons"><div class="no">05 · LESSONS</div><h2>배운 점</h2><ol class="lessons"><li><span>세부 설계 착수 전 구조 정의와 공통 작업 환경 구축이 분업 효율과 통합 완성도를 좌우함</span></li></ol></section><div class="src">출처: 전자재료물성실험및설계1 4조 최종발표 (2025.06.16)</div><a class="backlink" href="../../projects.html">← 프로젝트 목록</a></div></div>
+<footer class="site texture"><a href="../../index.html">← Portfolio Home</a> &nbsp;&nbsp; Hong-Kwon Jung © 2026</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>
