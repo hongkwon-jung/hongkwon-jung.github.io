@@ -25,6 +25,19 @@
     inp.addEventListener('input',function(){var q=inp.value.trim().toLowerCase();
       panel.querySelectorAll('ol.refs li').forEach(function(li){li.hidden=q&&li.textContent.toLowerCase().indexOf(q)<0;});});
   });
+  // code dialog
+  document.querySelectorAll('[data-open]').forEach(function(btn){btn.addEventListener('click',function(){
+    var dlg=document.getElementById(btn.getAttribute('data-open'));if(!dlg)return;
+    var t=btn.getAttribute('data-tab');if(t){dlg.querySelectorAll('.cd-tabs [data-tab]').forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===t?'true':'false');});
+      dlg.querySelectorAll('.cpane').forEach(function(p){p.hidden=p.getAttribute('data-pane')!==t;});}
+    if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');});});
+  document.querySelectorAll('dialog.codedlg').forEach(function(dlg){
+    dlg.querySelector('.cd-close').addEventListener('click',function(){dlg.close();});
+    dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close();});
+    dlg.querySelectorAll('.cd-tabs [data-tab]').forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-tab');
+      dlg.querySelectorAll('.cd-tabs [data-tab]').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');});
+      dlg.querySelectorAll('.cpane').forEach(function(p){p.hidden=p.getAttribute('data-pane')!==t;});});});
+  });
   // circuit viewer
   document.querySelectorAll('.cview').forEach(function(cv){
     var btns=[].slice.call(cv.querySelectorAll('.cv-btns button')), views=[].slice.call(cv.querySelectorAll('.cv-view'));
