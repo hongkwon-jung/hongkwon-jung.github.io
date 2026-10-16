@@ -11,6 +11,13 @@
       links.forEach(function(a){a.classList.remove('on')});var a=map[en.target.id];if(a)a.classList.add('on');}})},{rootMargin:'-20% 0px -70% 0px'});
     document.querySelectorAll('.psec').forEach(function(s){io.observe(s)});
   }
+  // circuit viewer
+  document.querySelectorAll('.cview').forEach(function(cv){
+    var btns=[].slice.call(cv.querySelectorAll('.cv-btns button')), views=[].slice.call(cv.querySelectorAll('.cv-view'));
+    function show(i){btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false');});views.forEach(function(v,j){v.hidden=j!==i;});}
+    cv.addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(!b||!cv.contains(b))return;var i=+b.getAttribute('data-v');show(i);if(b.classList.contains('cv-hot'))btns[i].focus({preventScroll:true});});
+    show(0);
+  });
   // project tabs (회로 설계 페이지)
   var tl=document.querySelector('.ptabs');
   if(tl){
