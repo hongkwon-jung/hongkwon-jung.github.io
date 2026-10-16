@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCAD Modeling of WSe2/IGZO Gaussian Transistors | Hong-Kwon Jung</title>
+<meta name="description" content="연구실 첫 TCAD 도입으로 실측에 보정한 모델을 세워 가우시안 응답의 메커니즘을 해석하고, 구조 변수 7종의 영향을 정량화해 설계 기준을 제시한 연구입니다.">
+<meta property="og:title" content="TCAD Modeling of WSe2/IGZO Gaussian Transistors | Hong-Kwon Jung">
+<meta property="og:description" content="연구실 첫 TCAD 도입으로 실측에 보정한 모델을 세워 가우시안 응답의 메커니즘을 해석하고, 구조 변수 7종의 영향을 정량화해 설계 기준을 제시한 연구입니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2315212C'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EHJ%3C/text%3E%3C/svg%3E">
+<link rel="alternate" hreflang="en" href="https://hongkwon-jung.github.io/projects/gaussian-tcad/">
+<link rel="alternate" hreflang="ko" href="https://hongkwon-jung.github.io/ko/projects/gaussian-tcad/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="topbar texture"><div class="in"><a class="nm" href="/ko/">Hong-Kwon Jung</a>
+<nav><a href="/ko/">HOME</a><a href="/ko/projects.html">PROJECTS</a><a class="gh" href="https://github.com/hongkwon-jung">GITHUB</a><div class="langsw" role="group" aria-label="Language"><a href="/projects/gaussian-tcad/" lang="en">EN</a><a href="/ko/projects/gaussian-tcad/" lang="ko" aria-current="true">KO</a></div></nav></div></div><header class="vhead"><div class="vh-main"><div class="vfield">TCAD · Device Simulation<span class="status ">Published</span></div><h1>TCAD Modeling of WSe<sub>2</sub>/IGZO Gaussian Transistors</h1><div class="ven">Effects of structural parameters on the Gaussian response in WSe<sub>2</sub>/IGZO heterojunction transistors</div><p class="vsum">연구실 첫 TCAD 도입. 실측에 보정한 Sentaurus 모델로 가우시안 응답의 메커니즘을 밝히고, 구조 변수 7종의 영향을 정량화해 응용별 설계 지침을 제시한 연구입니다.</p><div class="vlinks"><a href="https://doi.org/10.1088/1361-6463/ae9625">Paper (DOI)</a><button type="button" data-open="code">Input files (sde · sdevice)</button><a href="/ko/references.html#tcad">References</a></div></div><dl class="vfacts"><dt>Period</dt><dd>2025.01 – 2026.08</dd><dt>Affiliation</dt><dd>AMDEL Lab, Kwangwoon University</dd><dt>Role</dt><dd>Team leader, co-first author</dd><dt>Team</dt><dd>4</dd><dt>Output</dt><dd><i>J. Phys. D: Appl. Phys.</i> 59, 335105 (published 2026.08.20)</dd></dl></header><section class="vhero"><figure><div class="vhero-img"><img src="/assets/img/tcad_fig1.png" alt="Structure of the WSe2/IGZO heterojunction transistor"></div><div class="kres"><div><b>≈9.0×</b><span>Average PVR gain with monolayer WSe<sub>2</sub></span></div><div><b>−39.3%</b><span>FWHM change with monolayer WSe<sub>2</sub></span></div><div><b>7</b><span>Structural parameters quantified</span></div><div><b>#1</b><span>Design parameter: contact work function</span></div></div><figcaption><b>Fig. 1</b> (a) Structure of the WSe<sub>2</sub>/IGZO heterojunction transistor (b) Simulated cross-section and dimensions</figcaption></figure></section><nav class="vrail" aria-label="Sections"><a href="#objective"><b>01</b>Objective</a><a href="#process"><b>02</b>Approach</a><a href="#trouble"><b>03</b>Troubleshooting</a><a href="#results"><b>04</b>Results</a><a href="#lessons"><b>05</b>Lessons</a></nav><main class="vmain"><section class="vsec" id="objective"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Formation Conditions and Design Guidelines of the Gaussian Response</h2>
+<p>가우시안(anti-ambipolar) 트랜지스터는 특정 게이트 전압 구간에서만 전류가 흐르는 소자입니다. p형 WSe<sub>2</sub>와 n형 IGZO를 겹친 이종접합 구조에서 이 응답이 어떤 조건에서 생기는지 밝히고, 구조 변수별 영향을 정량화해 응용별 설계 기준을 제시하는 것이 목표였습니다.</p>
+<div class="tscroll"><table class="dt"><tr><th>Component</th><th>Reference structure</th></tr><tr><td class="">Gate / dielectric</td><td class="">p<sup>++</sup> Si back gate / Al<sub>2</sub>O<sub>3</sub> 90&nbsp;nm</td></tr><tr><td class="">Channels</td><td class="">IGZO 10&nbsp;nm, WSe<sub>2</sub> 5&nbsp;nm (8 layers)</td></tr><tr><td class="">Electrodes</td><td class="">Al (IGZO side), Pd (WSe<sub>2</sub> side), asymmetric</td></tr><tr><td class="">Bias</td><td class="">V<sub>DS</sub> = 1&nbsp;V</td></tr></table></div></div></section><section class="vsec" id="process"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>Measurement-Calibrated Physical Models and Structural Parameter Analysis</h2>
+<p>연구실에서 처음 도입한 TCAD라 이전 자료나 인수인계가 없었습니다. 매뉴얼과 문헌으로 물리 모델을 세우고, 연구실에서 제작한 WSe<sub>2</sub>, IGZO 단일 TFT의 실측에 보정했습니다.</p>
+<ul class="bl"><li>100여 개 모델 변수를 문헌값으로 고정하거나 하나씩 조정해, 게이트 전압 구간별 지배 물리(trap, 게이트 누설, 이동도)를 분리</li><li>2D drift-diffusion 계산에 SRH 재결합, IGZO percolation 이동도, 비국소 터널링 모델 적용</li></ul>
+<div class="codebar"><span>Input files used for Fig. 2</span><button type="button" data-open="code" data-tab="sde">sde_dvs.cmd</button><button type="button" data-open="code" data-tab="sdevice">sdevice_des.cmd</button></div>
+<figure><img src="/assets/img/tcad_fig2.png" alt="Fig. 2 Measured (circles) and simulated (lines) transfer curves of single (a) WSe2 and (b) IGZO TFTs (c) Gaussian respon"><figcaption><b>Fig. 2</b> Measured (circles) and simulated (lines) transfer curves of single (a) WSe<sub>2</sub> and (b) IGZO TFTs (c) Gaussian response (d) Electron and hole current decomposition</figcaption></figure>
+<h3>Analysis of seven structural parameters</h3>
+<p>나머지 조건을 고정하고 구조 변수를 하나씩 바꿔 peak 전압(V<sub>P</sub>), peak 전류(I<sub>P</sub>), 반치폭(FWHM), peak 대 valley 전류비(PVR) 변화를 분석했습니다.</p>
+<div class="tscroll"><table class="dt"><tr><th>Structural parameter</th><th>What was varied</th></tr><tr><td class="">Contact work function and symmetry</td><td class="">Electrode work-function combination and symmetry</td></tr><tr><td class="">V<sub>th</sub> alignment</td><td class="">Relative position of the two channel threshold voltages</td></tr><tr><td class="">Overlap length</td><td class="">Length over which the two channels overlap</td></tr><tr><td class="">Stacking order</td><td class="">WSe<sub>2</sub>-on-IGZO vs. IGZO-on-WSe<sub>2</sub></td></tr><tr><td class="">WSe<sub>2</sub> effective length</td><td class="">Effective length of the WSe<sub>2</sub> channel</td></tr><tr><td class="">IGZO effective length</td><td class="">Effective length of the IGZO channel</td></tr><tr><td class="">WSe<sub>2</sub> layer number</td><td class="">From monolayer to multilayer</td></tr></table></div></div></section><section class="vsec" id="trouble"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Simulation Troubleshooting and Automation</h2>
+<div class="case"><h3>Convergence failure</h3><dl><dt>Situation</dt><dd>게이트 누설 모델을 넣자 +0.3 V에서 계산 중단</dd><dt>Diagnosis</dt><dd>로그로 콘택 가장자리 전자 밀도가 0으로 무너지는 지점 특정</dd><dt>Action</dt><dd>그 모서리의 메쉬만 수정</dd><dt>Result</dt><dd><b>+10 V까지 완주</b></dd></dl></div>
+<div class="case"><h3>Simulation time</h3><dl><dt>Situation</dt><dd>1회 실행에 13시간 소요</dd><dt>Diagnosis</dt><dd>로그로 행렬 조립 시간이 풀이 시간의 43배임을 확인</dd><dt>Action</dt><dd>반복 계산 설정 조정</dd><dt>Result</dt><dd><b>6시간으로 단축</b></dd></dl></div>
+<div class="case"><h3>Mechanism verification</h3><dl><dt>Situation</dt><dd>가우시안 peak 전류가 SRH 재결합에서 나오는지, 캐리어 중첩에서 나오는지 구분 필요</dd><dt>Diagnosis</dt><dd>SRH 수명 100배 변화에 peak 전류 변화 0.03% 미만</dd><dt>Action</dt><dd>재결합 분포를 캐리어 중첩 영역의 지표로 해석하고, 계면 트랩 밀도를 바꿔도 결론이 유지되는지 확인</dd><dt>Result</dt><dd><b>n·p 동시 도통과 WSe<sub>2</sub> 쪽 캐리어 중첩이 응답을 결정한다는 해석으로 게재</b></dd></dl></div>
+<div class="case"><h3>Fitting automation</h3><dl><dt>Situation</dt><dd>모델을 다시 설계할 때마다 반복 피팅에 수동으로 약 2개월 소요</dd><dt>Action</dt><dd>근거 조사, 감도 계산, 다음 조건 설계, 실행, 판정, 수치만 맞는 피팅을 거르는 감사의 6역할 AI 파이프라인 구축. 물리 모델과 전압 구간별 우선 특성은 직접 결정</dd><dt>Result</dt><dd><b>IGZO 피팅 39회 실행 중 31회 수렴</b></dd></dl></div></div></section><section class="vsec" id="results"><div class="vlab"><b>04</b><span>Results</span></div><div class="vbody"><h2>Response Mechanism and Structural Design Guidelines</h2>
+<h3>Mechanism governing the response</h3>
+<p>밴드 다이어그램, 전자·정공 전류 분해, SRH 재결합 분포로 해석한 결과, peak 전류는 단일 채널의 turn-on이나 두 전류의 단순 합이 아니라 n·p 채널의 동시 도통과 WSe<sub>2</sub> 쪽 캐리어 중첩이 결정했습니다.</p>
+<ul class="bl"><li>WSe<sub>2</sub> SRH 수명을 100배 바꿔도 적분 재결합은 비례해 변했지만 peak 전류 변화는 0.03% 미만</li><li>따라서 재결합 분포는 전류 기여자가 아니라 n·p 캐리어 중첩 영역의 공간·바이어스 지표로 해석</li></ul>
+<h3>Response change by structural parameter</h3>
+<figure><img src="/assets/img/tcad_fig5.png" alt="Fig. 5 Effect of contact work function and effective channel length. (a) Asymmetric contact assignment (b) Symmetric S/D"><figcaption><b>Fig. 5</b> Effect of contact work function and effective channel length. (a) Asymmetric contact assignment (b) Symmetric S/D contacts (c) Symmetric work functions of 4.5, 4.7, and 4.9&nbsp;eV (d) WSe<sub>2</sub> effective length (IGZO fixed at 15&nbsp;µm) (e) IGZO effective length (WSe<sub>2</sub> fixed at 25&nbsp;µm) (f) Hole density near the WSe<sub>2</sub>/Pd contact</figcaption></figure>
+<ul class="bl"><li>Al(IGZO 측)/Pd(WSe<sub>2</sub> 측) 배치에서 뚜렷한 peak가 나타나고, 배치를 뒤바꾸면 peak가 강하게 억제됨. Al/Al, Pd/Pd 대칭 전극에서도 한쪽 캐리어 공급이 약해져 peak가 약화</li><li>단일 대칭 전극은 일함수 4.7&nbsp;eV에서 IGZO 전자와 WSe<sub>2</sub> 정공 공급이 균형을 이뤄 peak가 가장 뚜렷하고, 4.5&nbsp;eV와 4.9&nbsp;eV에서는 감소</li><li>peak 형성은 유효 채널 길이에 좌우되지 않음. WSe<sub>2</sub> 유효 길이를 25&nbsp;µm에서 1&nbsp;µm로 줄이면 오른쪽 valley 전류가 약 2자릿수, I<sub>P</sub>가 약 6배 증가</li></ul>
+<h3>Structural design guidelines</h3>
+<div class="tscroll"><table class="dt"><tr><th>Metric</th><th>Reference structure</th><th>Monolayer WSe<sub>2</sub></th><th>Change</th></tr><tr><td class="">Average PVR</td><td class="">4.06×10<sup>6</sup></td><td class="">3.66×10<sup>7</sup></td><td class="em">≈9.0×</td></tr><tr><td class="">FWHM</td><td class="">1.042&nbsp;V</td><td class="">0.633&nbsp;V</td><td class="em">−39.3%</td></tr><tr><td class="">I<sub>P</sub></td><td class="">2.14×10<sup>−7</sup> A</td><td class="">1.32×10<sup>−8</sup> A</td><td class="em">≈1/16</td></tr></table></div>
+<figure><img src="/assets/img/tcad_fig9.png" alt="Fig. 9 (a) Normalized impact of each structural parameter. Contact work function ranks first in five metrics (b) Design "><figcaption><b>Fig. 9</b> (a) Normalized impact of each structural parameter. Contact work function ranks first in five metrics (b) Design space of FWHM and average PVR</figcaption></figure>
+<ul class="bl"><li>contact 일함수가 I<sub>P</sub>, V<sub>P</sub>, PVR, SS에 가장 큰 영향을 주는 1순위 설계 변수이고, FWHM은 V<sub>th</sub> 정렬이 결정</li><li>단층 WSe<sub>2</sub>는 선택도, 다층은 출력 전류에 유리해 응용에 따라 층수를 고르는 trade-off</li><li>중간 일함수 단일 전극으로 비대칭 Al/Pd 전극을 대체해 공정을 단순화할 수 있음</li></ul></div></section><section class="vsec" id="lessons"><div class="vlab"><b>05</b><span>Lessons</span></div><div class="vbody"><h2>Lessons</h2><ol class="lessons"><li><span>수많은 모델 변수는 고정할 것과 조정할 것을 나눠야 실측 특성을 지배하는 물리와 구조 변수의 영향을 구분할 수 있음</span></li><li><span>참고 자료 없이 익힌 새 도구도 원리를 세운 뒤에는 반복 작업을 자동화해 검증 주기를 줄일 수 있음</span></li></ol></div></section></main><dialog class="codedlg" id="code" aria-label="Sentaurus input files · Fig. 2 calculation"><div class="cd-head"><b>Sentaurus input files · Fig. 2 calculation</b><button type="button" class="cd-close" aria-label="Close">Close</button></div><div class="cd-tabs" role="tablist"><button type="button" role="tab" data-tab="sde" aria-selected="true">sde_dvs.cmd (structure)</button><button type="button" role="tab" data-tab="sdevice" aria-selected="false">sdevice_des.cmd (device)</button></div><div class="cpane" data-pane="sde"><div class="cmeta">Sentaurus Structure Editor. Defines the oxide, the IGZO and WSe<sub>2</sub> channels, and the electrode positions. <a href="/assets/code/sde_dvs.cmd" download>Download</a></div><pre><code>(sdegeo:create-rectangle (position 0 0 0) (position 60 0.09 0) &quot;AluminumOxide&quot; &quot;Al2O3&quot;)
+
+(sdegeo:create-rectangle (position (- 30 @L_R@) 0.09 0) (position 55 (+ 0.09 0.015) 0 ) &quot;WSe2&quot; &quot;WSe2_channel&quot;)
+(sdegeo:create-rectangle (position 30 0.09 0) (position 30.0005 (+ 0.09 0.01) 0 ) &quot;WSe2&quot; &quot;WSe2_channel2&quot;)
+(sdegeo:create-rectangle (position (- 30 @L_R@) (+ 0.09 0.005) 0) (position 30 (+ 0.09 0.005 0.005 0.0005) 0 ) &quot;WSe2&quot; &quot;WSe2_channel3&quot;)
+(sdegeo:create-rectangle (position 55 0.09 0) (position 60 (+ 0.09 0.005) 0) &quot;WSe2&quot; &quot;WSe2_D&quot;)
+(sdegeo:create-rectangle (position 30.005 (+ 0.09 0.005) 0) (position 55 (+  0.09 0.02) 0 ) &quot;WSe2&quot; &quot;WSe2_channelc&quot;)
+(sdegeo:delete-region (find-region-id &quot;WSe2_channelc&quot;))
+
+(sdegeo:create-rectangle (position 0 0.09 0) (position 5 (+ 0.09 0.01)  0) &quot;aIGZO&quot; &quot;IGZO_S&quot;)
+(sdegeo:create-rectangle (position 5 0.09 0) (position 30 (+ 0.09 0.01) 0) &quot;aIGZO&quot; &quot;IGZO_channel&quot;)
+
+(sdegeo:define-contact-set &quot;sss&quot; 0.001 (color:rgb 1 0 0) &quot;##&quot;)
+(sdegeo:define-contact-set &quot;ddd&quot; 0.001 (color:rgb 1 0 1) &quot;##&quot;)
+(sdegeo:define-contact-set &quot;ggg&quot; 0.001 (color:rgb 1 1 0) &quot;##&quot;)
+
+(sdegeo:set-current-contact-set &quot;ddd&quot;)
+(sdegeo:set-contact (list (car (find-edge-id (position 57.5 0.095 0)))) &quot;ddd&quot;)
+(sdegeo:set-current-contact-set &quot;sss&quot;)
+(sdegeo:set-contact (list (car (find-edge-id (position 2.5 0.1 0)))) &quot;sss&quot;)
+(sdegeo:set-current-contact-set &quot;ggg&quot;)
+(sdegeo:set-contact (list (car (find-edge-id (position 30 0 0)))) &quot;ggg&quot;)
+
+(sdeio:save-tdr-bnd (get-body-list) &quot;n@node@_bnd.tdr&quot;)
+</code></pre></div><div class="cpane" data-pane="sdevice" hidden><div class="cmeta">Sentaurus Device. Defines electrode conditions, output variables, numerical methods, and the bias sequence. Material parameters, physical models, and trap and tunneling settings are not published. <a href="/assets/code/sdevice_des.cmd" download>Download</a></div><pre><code># Material parameters, physical models, trap and tunneling settings are not published.
+
+File {
+  Grid= &quot;@tdr@&quot;
+  Parameter= &quot;@parameter@&quot;
+  Current= &quot;@plot@&quot;
+  Plot= &quot;@tdrdat@&quot;
+  Output= &quot;@log@&quot;
+}
+
+Electrode {
+  { Name=&quot;sss&quot; Voltage=0. material=&quot;Aluminum&quot; Schottky }
+  { Name=&quot;ddd&quot; Voltage=0. material=&quot;Gold&quot; Schottky }
+  { Name=&quot;ggg&quot; Voltage=0. Workfunction=<mark>[REDACTED]</mark>}
+}
+
+# Physics { ... }  <mark>[REDACTED]</mark>
+
+Plot {
+  Potential eQuasiFermi hQuasiFermi
+  eDensity hDensity
+  Current eCurrent hCurrent
+  ElectricField SpaceCharge
+  eMobility  hMobility
+  eVelocity  hVelocity
+  Doping DonorConcentration AcceptorConcentration
+  EffectiveIntrinsicDensity IntrinsicDensity
+  Current/Vector eCurrent/Vector hCurrent/Vector
+  CurrentPotential
+  ElectricField/Vector
+  eGradQuasiFermi/Vector hGradQuasiFermi/Vector
+  LatticeTemperature eTemperature hTemperature
+  SRHRecombination AugerRecombination RadiativeRecombination
+  Band2BandGeneration TotalRecombination SurfaceRecombination
+  AvalancheGeneration eAvalancheGeneration hAvalancheGeneration
+  BandGap BandGapNarrowing ElectronAffinity
+  ConductionBandEnergy ValenceBand
+  eQuantumPotential hQuantumPotential
+  eTrappedCharge hTrappedCharge
+  eInterfaceTrappedCharge hInterfaceTrappedCharge
+  TotalTrapConcentration TotalInterfaceTrapConcentration
+  eGapStatesRecombination hGapStatesRecombination
+  lHeatFlux TotalHeat eJouleHeat hJouleHeat
+  PeltierHeat ThomsonHeat RecombinationHeat
+  DissipationRateDensity
+  ThermalConductivity LatticeHeatCapacity
+  Potential eQuasiFermi hQuasiFermi
+  eDensity hDensity SpaceCharge
+  Current eCurrent hCurrent CurrentPotential
+  ElectricField SemiconductorElectricField InsulatorElectricField
+  eMobility hMobility
+  eVelocity hVelocity
+  Doping DonorConcentration AcceptorConcentration
+  Current/vector eCurrent/vector hCurrent/vector
+  DisplacementCurrent/vector
+  ElectricField/vector eGradQuasiFermi/vector hGradQuasiFermi/vector
+  eVelocity/vector hVelocity/vector
+  eDriftVelocity/vector hDriftVelocity/vector
+  eTrappedCharge hTrappedCharge
+  eInterfaceTrappedCharge hInterfaceTrappedCharge
+  TotalTrapConcentration TotalInterfaceTrapConcentration
+  eGapStatesRecombination hGapStatesRecombination
+  DeepLevels
+  TrappingRates
+  LatticeTemperature eTemperature hTemperature
+  lHeatFlux TotalHeat
+  eJouleHeat hJouleHeat JouleHeat
+  PeltierHeat ThomsonHeat RecombinationHeat
+  DissipationRateDensity
+  OpticalAbsorptionHeat
+  ThermalConductivity LatticeHeatCapacity
+  eThermoElectricPower hThermoElectricPower
+  AvalancheGeneration eAvalancheGeneration hAvalancheGeneration
+  eAlphaAvalanche hAlphaAvalanche
+  eIonIntegral hIonIntegral MeanIonIntegral
+  ConductionBandEnergy ValenceBandEnergy
+  ElectronAffinity
+  BandGap EffectiveBandGap BandGapNarrowing
+  QCEffectiveBandGap
+  xMolefraction yMolefraction
+  SRH SurfaceRecombination
+  Auger eAugerRecombination hAugerRecombination
+  Radiative
+  eLifeTime hLifeTime
+  AvalancheGeneration eAvalancheGeneration hAvalancheGeneration
+  TotalRecombination
+  
+}
+
+Math {
+  NumberOfThreads=4
+  ParallelLicense (Wait)
+  Wallclock
+  Digits=7
+  Iterations=60
+  Extrapolate
+  Transient=BE
+  ComputeGradQuasiFermiAtContacts=UseQuasiFermi
+  ExitOnFailure
+  RefDens_eGradQuasiFermi_ElectricField_HFS=1.000e+12
+  RefDens_hGradQuasiFermi_ElectricField_HFS=1.000e+12
+  Method=Blocked
+  SubMethod=ParDiSo()
+  RHSMaxQ=1e30
+  RHSMin=1e-100
+  RHSMax=1e30
+  RHSFactor=1e100
+#  CNormPrint
+  AutoCNPMinStepFactor=0.0 
+  AutoNPMinStepFactor=0.0 
+  -PlotLoadable
+  -CheckRhsAfterUpdate
+
+}
+
+Solve {
+  Coupled (Iterations= 300){Poisson}
+  Coupled (Iterations= 300){Poisson Electron Hole}
+
+  Plot(FilePrefix=&quot;n@node@_ini&quot;)
+
+Quasistationary(
+    InitialStep=1e-3
+    MinStep=1e-6
+    MaxStep=0.5
+    Goal { Name=&quot;ddd&quot; Voltage=@V_WSe2@ }
+  ) {
+    Coupled { Poisson Electron Hole }
+  }
+Plot(FilePrefix=&quot;n@node@_0&quot;)
+
+  Quasistationary(
+    InitialStep=1e-6
+    MinStep=1e-10
+    MaxStep=0.5
+    Goal { Name=&quot;ggg&quot; Voltage=-10 }
+  ) {
+    Coupled { Poisson Electron Hole }
+  }
+  Plot(FilePrefix=&quot;n@node@_negative10&quot;)
+
+
+ NewCurrentFile=&quot;IdVg_&quot;
+
+  Quasistationary(
+    InitialStep=1e-2
+    MinStep=1e-10
+    MaxStep=0.5
+    Goal { Name=&quot;ggg&quot; Voltage=-0.6 }
+  ) {
+    Coupled { Poisson Electron Hole }
+  }
+Plot(FilePrefix=&quot;n@node@_negative_0_6&quot;)
+
+  Quasistationary(
+    InitialStep=1e-2
+    MinStep=1e-10
+    MaxStep=0.5
+    Goal { Name=&quot;ggg&quot; Voltage=0.7 }
+  ) {
+    Coupled { Poisson Electron Hole }
+  }
+Plot(FilePrefix=&quot;n@node@_positive_0_7&quot;)
+
+  Quasistationary(
+    InitialStep=1e-2
+    MinStep=1e-10
+    MaxStep=0.5
+    Goal { Name=&quot;ggg&quot; Voltage=2.8 }
+  ) {
+    Coupled { Poisson Electron Hole }
+  }
+Plot(FilePrefix=&quot;n@node@_positive_2_8&quot;)
+
+
+  Quasistationary(
+    InitialStep=1e-2
+    MinStep=1e-10
+    MaxStep=0.5
+    Goal { Name=&quot;ggg&quot; Voltage=10 }
+  ) {
+    Coupled { Poisson Electron Hole }
+    CurrentPlot (Time=(range=(0. 1.) intervals=75))
+  }
+  
+ Plot(FilePrefix=&quot;n@node@_positive10&quot;)
+
+}
+
+</code></pre></div></dialog><div class="vfoot"><div class="src">H.-K. Jung, B.-J. Kim, H.-Y. Choi, S.-H. Lee, H. Park, Y.-H. Kim, T.-J. Ha, “Effects of structural parameters on the Gaussian response in WSe<sub>2</sub>/IGZO heterojunction transistors,” <i>J. Phys. D: Appl. Phys.</i> 59, 335105 (2026). <a href="https://doi.org/10.1088/1361-6463/ae9625">https://doi.org/10.1088/1361-6463/ae9625</a><br>Figures reproduced from the article. © 2026 IOP Publishing Ltd.</div><a class="backlink" href="/ko/projects.html">← All projects</a></div>
+<footer class="site texture"><a href="/ko/">← Portfolio Home</a> &nbsp;&nbsp; Hong-Kwon Jung © 2026</footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

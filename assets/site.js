@@ -38,6 +38,9 @@
       dlg.querySelectorAll('.cd-tabs [data-tab]').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');});
       dlg.querySelectorAll('.cpane').forEach(function(p){p.hidden=p.getAttribute('data-pane')!==t;});});});
   });
+  // language switch keeps the current tab or section
+  document.querySelectorAll('.langsw a').forEach(function(a){a.addEventListener('click',function(){
+    if(location.hash){a.href=a.getAttribute('href').split('#')[0]+location.hash;}});});
   // circuit viewer
   document.querySelectorAll('.cview').forEach(function(cv){
     var btns=[].slice.call(cv.querySelectorAll('.cv-btns button')), views=[].slice.call(cv.querySelectorAll('.cv-view'));

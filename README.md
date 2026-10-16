@@ -1,15 +1,15 @@
 # Hong-Kwon Jung | Semiconductor Process & Device Portfolio
 
-광운대학교 전자재료공학과 정홍권의 포트폴리오입니다. 산화물 TFT 공정, TCAD 소자 해석, 3D DRAM 리뷰, 가스센서, 회로 설계 프로젝트를 정리했습니다.
+Portfolio of Hong-Kwon Jung (Electronic Materials Engineering, Kwangwoon University): oxide TFT process, TCAD device analysis, 3D DRAM review, gas sensor, and circuit design projects.
 
-[View Portfolio Page](https://hongkwon-jung.github.io/)
+[View Portfolio](https://hongkwon-jung.github.io/) · [Korean explanations](https://hongkwon-jung.github.io/ko/)
 
 | Project | Period | Link |
 |---|---|---|
-| 상온 NH3 가스센서 소재 설계 및 감지 특성 | 2026.01 – | [Page](https://hongkwon-jung.github.io/projects/nh3-gas-sensor/) |
-| 용액공정 산화물 TFT 기반 2T1C 디스플레이 화소 소자 설계 (참빛설계학기 우수상) | 2026.03 – 2026.06 | [Page](https://hongkwon-jung.github.io/projects/izo-tft-process/) |
-| 3D DRAM용 ALD 산화물 반도체 리뷰논문 (Applied Physics Reviews, under review) | 2026.03 – 2026.10 | [Page](https://hongkwon-jung.github.io/projects/ald-3d-dram-review/) |
-| WSe2/IGZO 가우시안 트랜지스터 TCAD 모델링 (J. Phys. D 59, 335105) | 2025.01 – 2026.08 | [Page](https://hongkwon-jung.github.io/projects/gaussian-tcad/) |
-| 회로 설계 프로젝트 (자동 주차 배정 시스템) | 2024.03 – 2025.12 | [Page](https://hongkwon-jung.github.io/projects/digital-circuit-design/) |
+| Room-Temperature NH3 Gas Sensor | 2026.01 – | [Page](https://hongkwon-jung.github.io/projects/nh3-gas-sensor/) |
+| 2T1C Display Pixel Based on Solution-Processed Oxide TFTs (Excellence Award) | 2026.03 – 2026.06 | [Page](https://hongkwon-jung.github.io/projects/izo-tft-process/) |
+| Review: ALD Oxide Semiconductors for 3D DRAM (Applied Physics Reviews, under review) | 2026.03 – 2026.10 | [Page](https://hongkwon-jung.github.io/projects/ald-3d-dram-review/) |
+| TCAD Modeling of WSe2/IGZO Gaussian Transistors (J. Phys. D 59, 335105) | 2025.01 – 2026.08 | [Page](https://hongkwon-jung.github.io/projects/gaussian-tcad/) |
+| Digital Circuit Design Projects | 2024.03 – 2025.12 | [Page](https://hongkwon-jung.github.io/projects/digital-circuit-design/) |
 
-Theme: header texture and navigation style based on [abhn/portfolio](https://github.com/abhn/portfolio) (GPL-3.0). Figures in the TCAD project page are reproduced from the published article with citation (© IOP Publishing).
+Theme: header texture and navigation style based on [abhn/portfolio](https://github.com/abhn/portfolio) (GPL-3.0). Figures on the TCAD project page are reproduced from the published article with citation (© IOP Publishing).
