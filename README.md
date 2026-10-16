@@ -7,7 +7,7 @@
 | Project | Period | Link |
 |---|---|---|
 | 상온 NH3 가스센서 소재 설계 및 감지 특성 | 2026.01 – | [Page](https://hongkwon-jung.github.io/projects/nh3-gas-sensor/) |
-| 용액공정 IZO TFT 공정 레시피 수립 (참빛설계학기 우수상) | 2026.03 – 2026.06 | [Page](https://hongkwon-jung.github.io/projects/izo-tft-process/) |
+| 용액공정 산화물 TFT 기반 2T1C 디스플레이 화소 소자 설계 (참빛설계학기 우수상) | 2026.03 – 2026.06 | [Page](https://hongkwon-jung.github.io/projects/izo-tft-process/) |
 | 3D DRAM용 ALD 산화물 반도체 리뷰논문 (Applied Physics Reviews, under review) | 2026.03 – 2026.10 | [Page](https://hongkwon-jung.github.io/projects/ald-3d-dram-review/) |
 | WSe2/IGZO 가우시안 트랜지스터 TCAD 모델링 (J. Phys. D 59, 335105) | 2025.01 – 2026.08 | [Page](https://hongkwon-jung.github.io/projects/gaussian-tcad/) |
 | 회로 설계 프로젝트 (자동 주차 배정 시스템) | 2024.03 – 2025.12 | [Page](https://hongkwon-jung.github.io/projects/digital-circuit-design/) |
