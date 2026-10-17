@@ -41,6 +41,10 @@
   // language switch keeps the current tab or section
   document.querySelectorAll('.langsw a').forEach(function(a){a.addEventListener('click',function(){
     if(location.hash){a.href=a.getAttribute('href').split('#')[0]+location.hash;}});});
+  // figure notes: click a figure (or Details) to show its details like a comment
+  document.querySelectorAll('.fn-btn,.fn-more').forEach(function(b){b.addEventListener('click',function(){
+    var id=b.getAttribute('aria-controls'),n=document.getElementById(id);var open=!n.hidden;n.hidden=open;
+    document.querySelectorAll('[aria-controls="'+id+'"]').forEach(function(x){x.setAttribute('aria-expanded',open?'false':'true');});});});
   // circuit viewer
   document.querySelectorAll('.cview').forEach(function(cv){
     var btns=[].slice.call(cv.querySelectorAll('.cv-btns button')), views=[].slice.call(cv.querySelectorAll('.cv-view'));

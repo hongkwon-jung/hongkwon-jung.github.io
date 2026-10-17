@@ -438,3 +438,25 @@ dialog.codedlg::backdrop{background:rgba(21,33,44,.45)}
   .topbar nav a.gh{display:none}
   .topbar .nm{font-size:14px}
 }
+
+/* ---------- figure notes (click a figure to show details) ---------- */
+.fn-btn{display:block;width:100%;padding:0;margin:0;border:0;background:none;cursor:zoom-in;font:inherit;text-align:inherit}
+.fn-btn[aria-expanded="true"]{cursor:zoom-out}
+.fn-btn img{display:block;width:100%}
+.fn-more{font:inherit;font-size:12.5px;font-weight:700;color:var(--blue);background:var(--bluell);border:0;border-radius:999px;padding:1px 9px;margin-left:4px;cursor:pointer;white-space:nowrap}
+.fn-more::before{content:'+ '}
+.fn-more[aria-expanded="true"]::before{content:'− '}
+.fn-more:hover{background:var(--bluel)}
+.fn-note{position:relative;margin-top:12px;background:var(--bluell);border-left:3px solid var(--blue);padding:10px 14px;font-size:14.5px;line-height:1.6;color:var(--ink2)}
+.fn-note::before{content:'';position:absolute;top:-8px;left:22px;border:8px solid transparent;border-top:0;border-bottom-color:var(--bluell)}
+.fn-note p+p,.fn-note p+ul,.fn-note ul+p{margin-top:6px}
+.fn-note ul{list-style:none}
+.fn-note li{position:relative;padding-left:12px}
+.fn-note li::before{content:'';position:absolute;left:0;top:10px;width:4px;height:4px;background:var(--blue)}
+.fig2:has(.fn){align-items:start}
+/* compact cases */
+.vbody .case{margin-top:12px}
+.vbody .case h3{margin:0;padding:9px 14px;font-size:15.5px}
+.case dl{grid-template-columns:88px 1fr}
+.case dt{padding:7px 0 7px 14px;font-size:12.5px}
+.case dd{padding:6px 14px 6px 6px;font-size:14.5px}
