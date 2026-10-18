@@ -15,7 +15,597 @@
 </head>
 <body>
 <div class="topbar texture"><div class="in"><a class="nm" href="/">Hong-Kwon Jung</a>
-<nav><a href="/">HOME</a><a href="/projects.html">PROJECTS</a><a class="gh" href="https://github.com/hongkwon-jung">GITHUB</a><div class="langsw" role="group" aria-label="Language"><a href="/projects/digital-circuit-design/" lang="en" aria-current="true">EN</a><a href="/ko/projects/digital-circuit-design/" lang="ko">KO</a></div></nav></div></div><header class="vhead"><div class="vh-main"><div class="vfield">Circuits · Digital Logic<span class="status ">Complete</span></div><h1>Digital Circuit Design Projects</h1><p class="vsum">Designed a Bluetooth maternity seat, the Smart Elevator, an automatic parking assignment system, and a shortest-time route navigation system with logic ICs and built them on breadboards.</p></div><dl class="vfacts"><dt>Period</dt><dd>2024.03 – 2025.12</dd><dt>Affiliation</dt><dd>Dept. of Electronic Materials Engineering, Kwangwoon University</dd><dt>Role</dt><dd>Team leader in 3 of 4</dd><dt>Team</dt><dd>3 – 5</dd><dt>Output</dt><dd>Breadboard builds and demos of all 4</dd></dl></header><div class="tanchor"></div><div class="ptabs" role="tablist" aria-label="Projects"><button type="button" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button><button type="button" role="tab" id="tab-maternity" aria-controls="maternity" aria-selected="false" tabindex="-1">Maternity Seat</button><button type="button" role="tab" id="tab-elevator" aria-controls="elevator" aria-selected="false" tabindex="-1">Smart Elevator</button><button type="button" role="tab" id="tab-parking" aria-controls="parking" aria-selected="false" tabindex="-1">Parking</button><button type="button" role="tab" id="tab-navigation" aria-controls="navigation" aria-selected="false" tabindex="-1">Navigation</button></div><div class="tpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview"><section class="vhero"><figure><div class="vhero-img"><img src="/assets/img/circ_parking_sim.png" alt="Verilog simulation waveform of the automatic parking assignment system"></div><div class="kres"><div><b>8 states</b><span>Parking controller FSM</span></div><div><b>9 blocks</b><span>Parking datapath</span></div><div><b>15 states</b><span>Navigation controller, one-hot</span></div></div><figcaption><b>Verilog simulation</b> Controller state (s0 – s7) transitions and parking-slot assignment results of the automatic parking assignment system</figcaption></figure></section><div class="tmain"><section class="vsec"><div class="vlab"><b>00</b><span>Overview</span></div><div class="vbody"><h2>Four Course Team Projects</h2><div class="tscroll"><table class="dt"><tr><th>Semester</th><th>Project</th><th>Course</th><th>Team</th><th>Role</th></tr><tr><td class="">2024-1</td><td class=""><a href="#maternity">Bluetooth Maternity Seat</a></td><td class="">Basic Circuit Laboratory and Design 1</td><td class="">5</td><td class="">Leader</td></tr><tr><td class="">2024-2</td><td class=""><a href="#elevator">Smart Elevator</a></td><td class="">Basic Circuit Laboratory and Design 2</td><td class="">5</td><td class="">Leader</td></tr><tr><td class="">2025-1</td><td class=""><a href="#parking">Automatic Parking Assignment System</a></td><td class="">Electronic Materials Laboratory and Design 1</td><td class="">4</td><td class="">Leader</td></tr><tr><td class="">2025-2</td><td class=""><a href="#navigation">Shortest-Time Route Navigation</a></td><td class="">Electronic Materials Laboratory and Design 2</td><td class="">3</td><td class="">Member</td></tr></table></div><p style="margin-top:14px">In all four projects, circuits were verified with PSpice or Verilog before being built. Over the semesters, the scale grew from mostly combinational logic to designs that separate an FSM from a datapath.</p></div></section><section class="vsec"><div class="vlab"><b>05</b><span>Lessons</span></div><div class="vbody"><h2>Lessons</h2><ol class="lessons"><li><span>Defining the structure and building a common working environment before detailed design determine the efficiency of division of labor and the completeness of integration</span></li><li><span>As circuits grow, implementation conditions such as voltage drop and clock synchronization affect the outcome as much as the logic design</span></li></ol></div></section></div></div><div class="tpanel" role="tabpanel" id="maternity" aria-labelledby="tab-maternity"><div class="tmain"><div class="tproj"><div class="vfield">MATERNITY SEAT</div><h2>Bluetooth Maternity Seat</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2024-1</div></div><div><div class="k">Course</div><div class="v">Basic Circuit Laboratory and Design 1</div></div><div><div class="k">Team</div><div class="v">5</div></div><div><div class="k">Role</div><div class="v">Leader</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Small maternity badges often keep priority seats from being offered. When a phone connects over Bluetooth, an LED under the seat lights for 5&nbsp;s and a display shows the number of pregnant passengers in the car.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><div class="tscroll"><table class="dt"><tr><th>Component</th><th>Function</th></tr><tr><td class="">Arduino Uno, HC-05</td><td class="">Detects the phone Bluetooth connection</td></tr><tr><td class="">NE555 monostable</td><td class="">Lights the LED for 5&nbsp;s</td></tr><tr><td class="">7447, 7-segment</td><td class="">Shows the number of pregnant passengers</td></tr><tr><td class="">Logic gates</td><td class="">Combine seat signals</td></tr><tr><td class="">NeoPixel LED, voice module</td><td class="">Seat indication and voice guidance</td></tr></table></div><h3>Circuits</h3><figure><img src="/assets/img/circ_mat_sch.png" alt="Final schematic PSpice. NE555 monostable circuit for each seat, 7447 decoder, and 7-segment display Full size"><figcaption><b>Final schematic</b> PSpice. NE555 monostable circuit for each seat, 7447 decoder, and 7-segment display <a class="fullsize" href="/assets/img/circ_mat_sch.png" target="_blank" rel="noopener">Full size</a></figcaption></figure></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>NE555 trigger and threshold tied to the RC network, LED driven through logic gates → 5&nbsp;s auto-lighting without a switch</li><li>HC-06 state pin did not report the connection → replaced with HC-05</li><li>Malfunction from three separate supplies → common ground and a stable 5&nbsp;V battery</li></ul></div></section><section class="vsec"><div class="vlab"><b>04</b><span>Results</span></div><div class="vbody"><h2>Implementation</h2><figure><img src="/assets/img/circ_maternity.jpg" alt="Final model Two priority seats and the display" style="width:100%;max-width:360px"><figcaption><b>Final model</b> Two priority seats and the display</figcaption></figure></div></section></div></div><div class="tpanel" role="tabpanel" id="elevator" aria-labelledby="tab-elevator"><div class="tmain"><div class="tproj"><div class="vfield">SMART ELEVATOR</div><h2>Smart Elevator</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2024-2</div></div><div><div class="k">Course</div><div class="v">Basic Circuit Laboratory and Design 2</div></div><div><div class="k">Team</div><div class="v">5</div></div><div><div class="k">Role</div><div class="v">Leader</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Four-floor elevator built with logic ICs. It compares the current and requested floors to go up, stop, or go down, serving requests in the travel direction first.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><div class="flow"><div class="st"><b>Requests and current floor</b><span>Combines button requests<br>Stores current floor as one-hot</span></div><span class="ar">›</span><div class="st"><b>Direction</b><span>Decides up, stop,<br>or down</span></div><span class="ar">›</span><div class="st"><b>Next floor</b><span>D flip-flop<br>state transitions</span></div><span class="ar">›</span><div class="st"><b>Expected time</b><span>Down counter<br>7-segment display</span></div></div><ul class="bl"><li>Processing time per floor for travel and door operation</li><li>Requests blocked by an infrared sensor (user away > 1.5&nbsp;s) or a pressure sensor (overload)</li><li>Expected arrival time on a 7-segment display</li></ul><h3>Circuits</h3><div class="cview"><div class="cv-btns" role="group" aria-label="Schematic views"><button type="button" data-v="0" aria-pressed="true">Full circuit</button><button type="button" data-v="1" aria-pressed="false">Requests and current floor</button><button type="button" data-v="2" aria-pressed="false">Direction</button><button type="button" data-v="3" aria-pressed="false">Next floor</button><button type="button" data-v="4" aria-pressed="false">Expected time</button><button type="button" data-v="5" aria-pressed="false">Clock and sensors</button></div><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_all.png" alt="Full circuit schematic"></div><figcaption><b>Final schematic</b> PSpice <a class="fullsize" href="/assets/img/circ_elev_all.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_req.png" alt="Requests and current floor schematic"></div><figcaption><b>Requests and current floor</b> Floor request signals and current-floor storage <a class="fullsize" href="/assets/img/circ_elev_req.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_dir.png" alt="Direction schematic"></div><figcaption><b>Direction</b> Up, stop, or down by comparing the current and requested floors <a class="fullsize" href="/assets/img/circ_elev_dir.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_next.png" alt="Next floor schematic"></div><figcaption><b>Next floor</b> State transition table and D flip-flop circuit <a class="fullsize" href="/assets/img/circ_elev_next.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_time.png" alt="Expected time schematic"></div><figcaption><b>Expected time</b> Down counter and 7-segment display <a class="fullsize" href="/assets/img/circ_elev_time.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_clk.png" alt="Clock and sensors schematic"></div><figcaption><b>Clock and sensors</b> Infrared and pressure sensor signals, NE555 clock, and reset and preset pulses <a class="fullsize" href="/assets/img/circ_elev_clk.png" target="_blank" rel="noopener">Full size</a></figcaption></figure></div></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>1st-floor preset released before the circuit settled at power-on → 2&nbsp;s monostable for that preset only</li><li>Stop-signal high varied with the flip-flop clock → fixed to 1&nbsp;s with an NE555</li><li>Down counter wrapped to 9 and skipped digits → reset on detecting 9 (1001)</li><li>Counter reverse voltage dropped V<sub>CC</sub> by 2.5 – 3&nbsp;V → blocked with a diode, 1&nbsp;s clock from a function generator</li></ul></div></section></div></div><div class="tpanel" role="tabpanel" id="parking" aria-labelledby="tab-parking"><div class="tmain"><div class="tproj"><div class="vfield">PARKING SYSTEM</div><h2>Automatic Parking Assignment System</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2025-1</div></div><div><div class="k">Course</div><div class="v">Electronic Materials Laboratory and Design 1</div></div><div><div class="k">Team</div><div class="v">4</div></div><div><div class="k">Role</div><div class="v">Leader</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Six-slot lot (2 accessible, 2 regular, 1 EV, 1 compact). Priorities for six cases by vehicle type and disability, plus unexpected events: a slot freeing up, an assigned slot taken, shaded slots in summer.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><figure><img src="/assets/img/circ_flow.png" alt="System flowchart System-use check → Search for 1st – 3rd priority, EV waiting → Assignment success or failure → Slot sta"><figcaption><b>System flowchart</b> System-use check → Search for 1st – 3rd priority, EV waiting → Assignment success or failure → Slot status updated with the parking result and slot changes</figcaption></figure><ul class="bl"><li>Controller (8-state FSM) and Datapath (9 blocks) organized with an ASMD chart to divide the work</li><li>Basic operation written in Verilog first, verified with Verilog and PSpice before building</li><li>After proposal feedback, added a FAIL signal and a re-search from the current position</li></ul><h3>Circuits</h3><div class="cview"><div class="cv-btns" role="group" aria-label="Schematic views"><button type="button" data-v="0" aria-pressed="true">RTL</button><button type="button" data-v="1" aria-pressed="false">Controller</button><button type="button" data-v="2" aria-pressed="false">Datapath</button></div><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_park_rtl.png" alt="RTL schematic"><button type="button" class="cv-hot ol" data-v="2" style="left:40.2%;top:21.8%;width:9.5%;height:36.4%" aria-label="Show Datapath schematic"><span>Datapath</span></button><button type="button" class="cv-hot ol" data-v="1" style="left:64.4%;top:26.1%;width:8.0%;height:26.1%" aria-label="Show Controller schematic"><span>Controller</span></button></div><figcaption><b>RTL schematic</b> Controller and Datapath connection synthesized from the Verilog code <a class="fullsize" href="/assets/img/circ_park_rtl.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img" style="max-width:600px"><img src="/assets/img/circ_park_ctrl.png" alt="Controller schematic"></div><figcaption><b>Controller</b> 8-state FSM, PSpice <a class="fullsize" href="/assets/img/circ_park_ctrl.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img" style="max-width:600px"><img src="/assets/img/circ_park_dp.png" alt="Datapath schematic"></div><figcaption><b>Datapath</b> 9 blocks, PSpice <a class="fullsize" href="/assets/img/circ_park_dp.png" target="_blank" rel="noopener">Full size</a></figcaption><ol class="blk"><li><b>①</b><span>Converts the CASE entered by button into a vehicle code</span></li><li><b>②</b><span>Checks whether the vehicle is electric</span></li><li><b>③</b><span>Outputs priority information for the vehicle code</span></li><li><b>④</b><span>Stores the parking state of each slot</span></li><li><b>⑤</b><span>Signals a change in parking slots</span></li><li><b>⑥</b><span>Compares each slot's parking state with the priority to select available slots</span></li><li><b>⑦</b><span>Changes the priority according to the vehicle's current position and outputs the nearest slot</span></li><li><b>⑧</b><span>Converts the assigned slot into a 6-bit slot code</span></li><li><b>⑨</b><span>Updates the slot status to reflect parking</span></li></ol></figure></div></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>Voltage drop → two power-supply channels and AND gates</li><li>Active-low parts vs. design polarity → compensating circuit</li></ul></div></section><section class="vsec"><div class="vlab"><b>04</b><span>Results</span></div><div class="vbody"><h2>Implementation</h2><div class="fig2"><figure><img src="/assets/img/circ_parking_sim.png" alt="Verilog simulation Controller state (s0 – s7) transitions and parking-slot assignment results (slot_n, REG1 – 3)"><figcaption><b>Verilog simulation</b> Controller state (s0 – s7) transitions and parking-slot assignment results (slot_n, REG1 – 3)</figcaption></figure><figure><img src="/assets/img/circ_demo.jpg" alt="Breadboard demo Eight controller states (S0 – S7) shown on LEDs"><figcaption><b>Breadboard demo</b> Eight controller states (S0 – S7) shown on LEDs</figcaption></figure></div></div></section></div></div><div class="tpanel" role="tabpanel" id="navigation" aria-labelledby="tab-navigation"><div class="tmain"><div class="tproj"><div class="vfield">NAVIGATION</div><h2>Shortest-Time Route Navigation</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2025-2</div></div><div><div class="k">Course</div><div class="v">Electronic Materials Laboratory and Design 2</div></div><div><div class="k">Team</div><div class="v">3</div></div><div><div class="k">Role</div><div class="v">Member</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Finds the fastest route among bus, transfer, and walking routes with an ASMD-based FSM and datapath.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><figure><img src="/assets/img/circ_nav_route.png" alt="Route assumptions bus1 1 block/2 clk, bus2 1 block/1 clk, walking 1 block/4 clk, congested bus 1 block/8 clk"><figcaption><b>Route assumptions</b> bus1 1 block/2 clk, bus2 1 block/1 clk, walking 1 block/4 clk, congested bus 1 block/8 clk</figcaption></figure><ul class="bl"><li>15-state one-hot Controller, 16-bit one-hot current position (blocks 0 – 15)</li><li>Counters search up and down for the nearest stop and compare bus arrival times</li><li>Total times of bus-only, transfer, and walking routes compared, route stored in registers</li><li>Accident: leave the bus and search again. Congestion: bus weight replaced with the congestion value</li></ul><h3>Circuits</h3><div class="cview"><div class="cv-btns" role="group" aria-label="Schematic views"><button type="button" data-v="0" aria-pressed="true">Full circuit</button><button type="button" data-v="1" aria-pressed="false">Controller</button><button type="button" data-v="2" aria-pressed="false">s1 – s3</button><button type="button" data-v="3" aria-pressed="false">s4 – s7</button><button type="button" data-v="4" aria-pressed="false">TTs · s8 · s_slow</button><button type="button" data-v="5" aria-pressed="false">Position</button></div><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_all.png" alt="Full circuit schematic"><button type="button" class="cv-hot" data-v="1" style="left:0.9%;top:0.8%;width:41.3%;height:53.2%" aria-label="Show Controller schematic"><span>Controller</span></button><button type="button" class="cv-hot" data-v="2" style="left:44.5%;top:0.8%;width:55.5%;height:29.9%" aria-label="Show s1 – s3 schematic"><span>s1 – s3</span></button><button type="button" class="cv-hot" data-v="5" style="left:1.2%;top:54.3%;width:15.3%;height:45.7%" aria-label="Show Position schematic"><span>Position</span></button><button type="button" class="cv-hot" data-v="3" style="left:16.5%;top:56.5%;width:47.2%;height:43.5%" aria-label="Show s4 – s7 schematic"><span>s4 – s7</span></button><button type="button" class="cv-hot" data-v="4" style="left:40.6%;top:26.0%;width:31.7%;height:35.8%" aria-label="Show TTs · s8 · s_slow schematic"><span>TTs · s8 · s_slow</span></button></div><figcaption><b>Full circuit</b> Controller, stop and bus datapaths, and current-position circuit <a class="fullsize" href="/assets/img/circ_nav_all.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_ctrl.png" alt="Controller schematic"></div><figcaption><b>Controller</b> One-hot encoding of 15 states <a class="fullsize" href="/assets/img/circ_nav_ctrl.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_s123.png" alt="s1 – s3 schematic"></div><figcaption><b>s1 – s3 datapath</b> <a class="fullsize" href="/assets/img/circ_nav_s123.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_s4567.png" alt="s4 – s7 schematic"></div><figcaption><b>s4 – s7 datapath</b> <a class="fullsize" href="/assets/img/circ_nav_s4567.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_s8.png" alt="TTs · s8 · s_slow schematic"></div><figcaption><b>TTs · s8 · s_slow datapath</b> <a class="fullsize" href="/assets/img/circ_nav_s8.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_pos.png" alt="Position schematic"></div><figcaption><b>Current position</b> Positions of bus1_a, bus1_b, and bus2, and the one-hot current position <a class="fullsize" href="/assets/img/circ_nav_pos.png" target="_blank" rel="noopener">Full size</a></figcaption></figure></div></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>Voltage drop across about 14 breadboards → buffers and several power supplies</li><li>Timing mismatch among clocks → bus, pedestrian, and delay clocks synchronized, clocks only in action states</li><li>Controller too large → small controllers built from counters inside states</li></ul></div></section><section class="vsec"><div class="vlab"><b>04</b><span>Results</span></div><div class="vbody"><h2>Implementation</h2><figure><img src="/assets/img/circ_nav_demo.jpg" alt="Breadboard demo A congestion case in which the pedestrian walks to the destination. Pedestrian position (0 – 15) and con"><figcaption><b>Breadboard demo</b> A congestion case in which the pedestrian walks to the destination. Pedestrian position (0 – 15) and controller state shown on LEDs</figcaption></figure></div></section></div></div><div class="vfoot"><a class="backlink" href="/projects.html">← All projects</a></div>
+<nav><a href="/">HOME</a><a href="/projects.html">PROJECTS</a><a class="gh" href="https://github.com/hongkwon-jung">GITHUB</a><div class="langsw" role="group" aria-label="Language"><a href="/projects/digital-circuit-design/" lang="en" aria-current="true">EN</a><a href="/ko/projects/digital-circuit-design/" lang="ko">KO</a></div></nav></div></div><header class="vhead"><div class="vh-main"><div class="vfield">Circuits · Digital Logic<span class="status ">Complete</span></div><h1>Digital Circuit Design Projects</h1><p class="vsum">Designed a Bluetooth maternity seat, the Smart Elevator, an automatic parking assignment system, and a shortest-time route navigation system with logic ICs and built them on breadboards.</p></div><dl class="vfacts"><dt>Period</dt><dd>2024.03 – 2025.12</dd><dt>Affiliation</dt><dd>Dept. of Electronic Materials Engineering, Kwangwoon University</dd><dt>Role</dt><dd>Team leader in 3 of 4</dd><dt>Team</dt><dd>3 – 5</dd><dt>Output</dt><dd>Breadboard builds and demos of all 4</dd></dl></header><div class="tanchor"></div><div class="ptabs" role="tablist" aria-label="Projects"><button type="button" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button><button type="button" role="tab" id="tab-maternity" aria-controls="maternity" aria-selected="false" tabindex="-1">Maternity Seat</button><button type="button" role="tab" id="tab-elevator" aria-controls="elevator" aria-selected="false" tabindex="-1">Smart Elevator</button><button type="button" role="tab" id="tab-parking" aria-controls="parking" aria-selected="false" tabindex="-1">Parking</button><button type="button" role="tab" id="tab-navigation" aria-controls="navigation" aria-selected="false" tabindex="-1">Navigation</button></div><div class="tpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview"><section class="vhero"><figure><div class="vhero-img"><img src="/assets/img/circ_parking_sim.png" alt="Verilog simulation waveform of the automatic parking assignment system"></div><div class="kres"><div><b>8 states</b><span>Parking controller FSM</span></div><div><b>9 blocks</b><span>Parking datapath</span></div><div><b>15 states</b><span>Navigation controller, one-hot</span></div></div><figcaption><b>Verilog simulation</b> Controller state (s0 – s7) transitions and parking-slot assignment results of the automatic parking assignment system</figcaption></figure></section><div class="tmain"><section class="vsec"><div class="vlab"><b>00</b><span>Overview</span></div><div class="vbody"><h2>Four Course Team Projects</h2><div class="tscroll"><table class="dt"><tr><th>Semester</th><th>Project</th><th>Course</th><th>Team</th><th>Role</th></tr><tr><td class="">2024-1</td><td class=""><a href="#maternity">Bluetooth Maternity Seat</a></td><td class="">Basic Circuit Laboratory and Design 1</td><td class="">5</td><td class="">Leader</td></tr><tr><td class="">2024-2</td><td class=""><a href="#elevator">Smart Elevator</a></td><td class="">Basic Circuit Laboratory and Design 2</td><td class="">5</td><td class="">Leader</td></tr><tr><td class="">2025-1</td><td class=""><a href="#parking">Automatic Parking Assignment System</a></td><td class="">Electronic Materials Laboratory and Design 1</td><td class="">4</td><td class="">Leader</td></tr><tr><td class="">2025-2</td><td class=""><a href="#navigation">Shortest-Time Route Navigation</a></td><td class="">Electronic Materials Laboratory and Design 2</td><td class="">3</td><td class="">Member</td></tr></table></div><p style="margin-top:14px">In all four projects, circuits were verified with PSpice or Verilog before being built. Over the semesters, the scale grew from mostly combinational logic to designs that separate an FSM from a datapath.</p></div></section><section class="vsec"><div class="vlab"><b>05</b><span>Lessons</span></div><div class="vbody"><h2>Lessons</h2><ol class="lessons"><li><span>Defining the structure and building a common working environment before detailed design determine the efficiency of division of labor and the completeness of integration</span></li><li><span>As circuits grow, implementation conditions such as voltage drop and clock synchronization affect the outcome as much as the logic design</span></li></ol></div></section></div></div><div class="tpanel" role="tabpanel" id="maternity" aria-labelledby="tab-maternity"><div class="tmain"><div class="tproj"><div class="vfield">MATERNITY SEAT</div><h2>Bluetooth Maternity Seat</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2024-1</div></div><div><div class="k">Course</div><div class="v">Basic Circuit Laboratory and Design 1</div></div><div><div class="k">Team</div><div class="v">5</div></div><div><div class="k">Role</div><div class="v">Leader</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Small maternity badges often keep priority seats from being offered. When a phone connects over Bluetooth, an LED under the seat lights for 5&nbsp;s and a display shows the number of pregnant passengers in the car.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><div class="tscroll"><table class="dt"><tr><th>Component</th><th>Function</th></tr><tr><td class="">Arduino Uno, HC-05</td><td class="">Detects the phone Bluetooth connection</td></tr><tr><td class="">NE555 monostable</td><td class="">Lights the LED for 5&nbsp;s</td></tr><tr><td class="">7447, 7-segment</td><td class="">Shows the number of pregnant passengers</td></tr><tr><td class="">Logic gates</td><td class="">Combine seat signals</td></tr><tr><td class="">NeoPixel LED, voice module</td><td class="">Seat indication and voice guidance</td></tr></table></div><h3>Circuits</h3><figure><img src="/assets/img/circ_mat_sch.png" alt="Final schematic PSpice. NE555 monostable circuit for each seat, 7447 decoder, and 7-segment display Full size"><figcaption><b>Final schematic</b> PSpice. NE555 monostable circuit for each seat, 7447 decoder, and 7-segment display <a class="fullsize" href="/assets/img/circ_mat_sch.png" target="_blank" rel="noopener">Full size</a></figcaption></figure></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>NE555 trigger and threshold tied to the RC network, LED driven through logic gates → 5&nbsp;s auto-lighting without a switch</li><li>HC-06 state pin did not report the connection → replaced with HC-05</li><li>Malfunction from three separate supplies → common ground and a stable 5&nbsp;V battery</li></ul></div></section><section class="vsec"><div class="vlab"><b>04</b><span>Results</span></div><div class="vbody"><h2>Implementation</h2><figure><img src="/assets/img/circ_maternity.jpg" alt="Final model Two priority seats and the display" style="width:100%;max-width:360px"><figcaption><b>Final model</b> Two priority seats and the display</figcaption></figure></div></section></div></div><div class="tpanel" role="tabpanel" id="elevator" aria-labelledby="tab-elevator"><div class="tmain"><div class="tproj"><div class="vfield">SMART ELEVATOR</div><h2>Smart Elevator</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2024-2</div></div><div><div class="k">Course</div><div class="v">Basic Circuit Laboratory and Design 2</div></div><div><div class="k">Team</div><div class="v">5</div></div><div><div class="k">Role</div><div class="v">Leader</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Four-floor elevator built with logic ICs. It compares the current and requested floors to go up, stop, or go down, serving requests in the travel direction first.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><div class="flow"><div class="st"><b>Requests and current floor</b><span>Combines button requests<br>Stores current floor as one-hot</span></div><span class="ar">›</span><div class="st"><b>Direction</b><span>Decides up, stop,<br>or down</span></div><span class="ar">›</span><div class="st"><b>Next floor</b><span>D flip-flop<br>state transitions</span></div><span class="ar">›</span><div class="st"><b>Expected time</b><span>Down counter<br>7-segment display</span></div></div><ul class="bl"><li>Processing time per floor for travel and door operation</li><li>Requests blocked by an infrared sensor (user away > 1.5&nbsp;s) or a pressure sensor (overload)</li><li>Expected arrival time on a 7-segment display</li></ul><h3>Circuits</h3><div class="cview"><div class="cv-btns" role="group" aria-label="Schematic views"><button type="button" data-v="0" aria-pressed="true">Full circuit</button><button type="button" data-v="1" aria-pressed="false">Requests and current floor</button><button type="button" data-v="2" aria-pressed="false">Direction</button><button type="button" data-v="3" aria-pressed="false">Next floor</button><button type="button" data-v="4" aria-pressed="false">Expected time</button><button type="button" data-v="5" aria-pressed="false">Clock and sensors</button></div><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_all.png" alt="Full circuit schematic"></div><figcaption><b>Final schematic</b> PSpice <a class="fullsize" href="/assets/img/circ_elev_all.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_req.png" alt="Requests and current floor schematic"></div><figcaption><b>Requests and current floor</b> Floor request signals and current-floor storage <a class="fullsize" href="/assets/img/circ_elev_req.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_dir.png" alt="Direction schematic"></div><figcaption><b>Direction</b> Up, stop, or down by comparing the current and requested floors <a class="fullsize" href="/assets/img/circ_elev_dir.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_next.png" alt="Next floor schematic"></div><figcaption><b>Next floor</b> State transition table and D flip-flop circuit <a class="fullsize" href="/assets/img/circ_elev_next.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_time.png" alt="Expected time schematic"></div><figcaption><b>Expected time</b> Down counter and 7-segment display <a class="fullsize" href="/assets/img/circ_elev_time.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_elev_clk.png" alt="Clock and sensors schematic"></div><figcaption><b>Clock and sensors</b> Infrared and pressure sensor signals, NE555 clock, and reset and preset pulses <a class="fullsize" href="/assets/img/circ_elev_clk.png" target="_blank" rel="noopener">Full size</a></figcaption></figure></div></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>1st-floor preset released before the circuit settled at power-on → 2&nbsp;s monostable for that preset only</li><li>Stop-signal high varied with the flip-flop clock → fixed to 1&nbsp;s with an NE555</li><li>Down counter wrapped to 9 and skipped digits → reset on detecting 9 (1001)</li><li>Counter reverse voltage dropped V<sub>CC</sub> by 2.5 – 3&nbsp;V → blocked with a diode, 1&nbsp;s clock from a function generator</li></ul></div></section></div></div><div class="tpanel" role="tabpanel" id="parking" aria-labelledby="tab-parking"><div class="tmain"><div class="tproj"><div class="vfield">PARKING SYSTEM</div><h2>Automatic Parking Assignment System</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2025-1</div></div><div><div class="k">Course</div><div class="v">Electronic Materials Laboratory and Design 1</div></div><div><div class="k">Team</div><div class="v">4</div></div><div><div class="k">Role</div><div class="v">Leader</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Six-slot lot (2 accessible, 2 regular, 1 EV, 1 compact). Priorities for six cases by vehicle type and disability, plus unexpected events: a slot freeing up, an assigned slot taken, shaded slots in summer.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><figure><img src="/assets/img/circ_flow.png" alt="System flowchart System-use check → Search for 1st – 3rd priority, EV waiting → Assignment success or failure → Slot sta"><figcaption><b>System flowchart</b> System-use check → Search for 1st – 3rd priority, EV waiting → Assignment success or failure → Slot status updated with the parking result and slot changes</figcaption></figure><ul class="bl"><li>Controller (8-state FSM) and Datapath (9 blocks) organized with an ASMD chart to divide the work</li><li>Basic operation written in Verilog first, verified with Verilog and PSpice before building</li><li>After proposal feedback, added a FAIL signal and a re-search from the current position</li></ul><h3>Circuits</h3><div class="cview"><div class="cv-btns" role="group" aria-label="Schematic views"><button type="button" data-v="0" aria-pressed="true">RTL</button><button type="button" data-v="1" aria-pressed="false">Controller</button><button type="button" data-v="2" aria-pressed="false">Datapath</button></div><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_park_rtl.png" alt="RTL schematic"><button type="button" class="cv-hot ol" data-v="2" style="left:40.2%;top:21.8%;width:9.5%;height:36.4%" aria-label="Show Datapath schematic"><span>Datapath</span></button><button type="button" class="cv-hot ol" data-v="1" style="left:64.4%;top:26.1%;width:8.0%;height:26.1%" aria-label="Show Controller schematic"><span>Controller</span></button></div><figcaption><b>RTL schematic</b> Controller and Datapath connection synthesized from the Verilog code <a class="fullsize" href="/assets/img/circ_park_rtl.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img" style="max-width:600px"><img src="/assets/img/circ_park_ctrl.png" alt="Controller schematic"></div><figcaption><b>Controller</b> 8-state FSM, PSpice <a class="fullsize" href="/assets/img/circ_park_ctrl.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img" style="max-width:600px"><img src="/assets/img/circ_park_dp.png" alt="Datapath schematic"></div><figcaption><b>Datapath</b> 9 blocks, PSpice <a class="fullsize" href="/assets/img/circ_park_dp.png" target="_blank" rel="noopener">Full size</a></figcaption><ol class="blk"><li><b>①</b><span>Converts the CASE entered by button into a vehicle code</span></li><li><b>②</b><span>Checks whether the vehicle is electric</span></li><li><b>③</b><span>Outputs priority information for the vehicle code</span></li><li><b>④</b><span>Stores the parking state of each slot</span></li><li><b>⑤</b><span>Signals a change in parking slots</span></li><li><b>⑥</b><span>Compares each slot's parking state with the priority to select available slots</span></li><li><b>⑦</b><span>Changes the priority according to the vehicle's current position and outputs the nearest slot</span></li><li><b>⑧</b><span>Converts the assigned slot into a 6-bit slot code</span></li><li><b>⑨</b><span>Updates the slot status to reflect parking</span></li></ol></figure></div></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>Voltage drop → two power-supply channels and AND gates</li><li>Active-low parts vs. design polarity → compensating circuit</li></ul></div></section><section class="vsec"><div class="vlab"><b>04</b><span>Results</span></div><div class="vbody"><h2>Implementation</h2><div class="codebar"><span>Verilog code used for the simulation</span><button type="button" data-open="vcode" data-tab="slot">slot_jhk.v</button></div><div class="fig2"><figure><img src="/assets/img/circ_parking_sim.png" alt="Verilog simulation Controller state (s0 – s7) transitions and parking-slot assignment results (slot_n, REG1 – 3)"><figcaption><b>Verilog simulation</b> Controller state (s0 – s7) transitions and parking-slot assignment results (slot_n, REG1 – 3)</figcaption></figure><figure><img src="/assets/img/circ_demo.jpg" alt="Breadboard demo Eight controller states (S0 – S7) shown on LEDs"><figcaption><b>Breadboard demo</b> Eight controller states (S0 – S7) shown on LEDs</figcaption></figure></div></div></section></div></div><div class="tpanel" role="tabpanel" id="navigation" aria-labelledby="tab-navigation"><div class="tmain"><div class="tproj"><div class="vfield">NAVIGATION</div><h2>Shortest-Time Route Navigation</h2><div class="stats"><div><div class="k">Semester</div><div class="v">2025-2</div></div><div><div class="k">Course</div><div class="v">Electronic Materials Laboratory and Design 2</div></div><div><div class="k">Team</div><div class="v">3</div></div><div><div class="k">Role</div><div class="v">Member</div></div></div></div><section class="vsec"><div class="vlab"><b>01</b><span>Objective</span></div><div class="vbody"><h2>Overview</h2><p>Finds the fastest route among bus, transfer, and walking routes with an ASMD-based FSM and datapath.</p></div></section><section class="vsec"><div class="vlab"><b>02</b><span>Approach</span></div><div class="vbody"><h2>System Design and Circuits</h2><h3>System design</h3><figure><img src="/assets/img/circ_nav_route.png" alt="Route assumptions bus1 1 block/2 clk, bus2 1 block/1 clk, walking 1 block/4 clk, congested bus 1 block/8 clk"><figcaption><b>Route assumptions</b> bus1 1 block/2 clk, bus2 1 block/1 clk, walking 1 block/4 clk, congested bus 1 block/8 clk</figcaption></figure><ul class="bl"><li>15-state one-hot Controller, 16-bit one-hot current position (blocks 0 – 15)</li><li>Counters search up and down for the nearest stop and compare bus arrival times</li><li>Total times of bus-only, transfer, and walking routes compared, route stored in registers</li><li>Accident: leave the bus and search again. Congestion: bus weight replaced with the congestion value</li></ul><h3>Circuits</h3><div class="cview"><div class="cv-btns" role="group" aria-label="Schematic views"><button type="button" data-v="0" aria-pressed="true">Full circuit</button><button type="button" data-v="1" aria-pressed="false">Controller</button><button type="button" data-v="2" aria-pressed="false">s1 – s3</button><button type="button" data-v="3" aria-pressed="false">s4 – s7</button><button type="button" data-v="4" aria-pressed="false">TTs · s8 · s_slow</button><button type="button" data-v="5" aria-pressed="false">Position</button></div><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_all.png" alt="Full circuit schematic"><button type="button" class="cv-hot" data-v="1" style="left:0.9%;top:0.8%;width:41.3%;height:53.2%" aria-label="Show Controller schematic"><span>Controller</span></button><button type="button" class="cv-hot" data-v="2" style="left:44.5%;top:0.8%;width:55.5%;height:29.9%" aria-label="Show s1 – s3 schematic"><span>s1 – s3</span></button><button type="button" class="cv-hot" data-v="5" style="left:1.2%;top:54.3%;width:15.3%;height:45.7%" aria-label="Show Position schematic"><span>Position</span></button><button type="button" class="cv-hot" data-v="3" style="left:16.5%;top:56.5%;width:47.2%;height:43.5%" aria-label="Show s4 – s7 schematic"><span>s4 – s7</span></button><button type="button" class="cv-hot" data-v="4" style="left:40.6%;top:26.0%;width:31.7%;height:35.8%" aria-label="Show TTs · s8 · s_slow schematic"><span>TTs · s8 · s_slow</span></button></div><figcaption><b>Full circuit</b> Controller, stop and bus datapaths, and current-position circuit <a class="fullsize" href="/assets/img/circ_nav_all.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_ctrl.png" alt="Controller schematic"></div><figcaption><b>Controller</b> One-hot encoding of 15 states <a class="fullsize" href="/assets/img/circ_nav_ctrl.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_s123.png" alt="s1 – s3 schematic"></div><figcaption><b>s1 – s3 datapath</b> <a class="fullsize" href="/assets/img/circ_nav_s123.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_s4567.png" alt="s4 – s7 schematic"></div><figcaption><b>s4 – s7 datapath</b> <a class="fullsize" href="/assets/img/circ_nav_s4567.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_s8.png" alt="TTs · s8 · s_slow schematic"></div><figcaption><b>TTs · s8 · s_slow datapath</b> <a class="fullsize" href="/assets/img/circ_nav_s8.png" target="_blank" rel="noopener">Full size</a></figcaption></figure><figure class="cv-view"><div class="cv-img"><img src="/assets/img/circ_nav_pos.png" alt="Position schematic"></div><figcaption><b>Current position</b> Positions of bus1_a, bus1_b, and bus2, and the one-hot current position <a class="fullsize" href="/assets/img/circ_nav_pos.png" target="_blank" rel="noopener">Full size</a></figcaption></figure></div></div></section><section class="vsec"><div class="vlab"><b>03</b><span>Troubleshooting</span></div><div class="vbody"><h2>Troubleshooting</h2><ul class="trows"><li>Voltage drop across about 14 breadboards → buffers and several power supplies</li><li>Timing mismatch among clocks → bus, pedestrian, and delay clocks synchronized, clocks only in action states</li><li>Controller too large → small controllers built from counters inside states</li></ul></div></section><section class="vsec"><div class="vlab"><b>04</b><span>Results</span></div><div class="vbody"><h2>Implementation</h2><figure><img src="/assets/img/circ_nav_demo.jpg" alt="Breadboard demo A congestion case in which the pedestrian walks to the destination. Pedestrian position (0 – 15) and con"><figcaption><b>Breadboard demo</b> A congestion case in which the pedestrian walks to the destination. Pedestrian position (0 – 15) and controller state shown on LEDs</figcaption></figure></div></section></div></div><dialog class="codedlg" id="vcode" aria-label="Verilog code · Automatic parking assignment system"><div class="cd-head"><b>Verilog code · Automatic parking assignment system</b><button type="button" class="cd-close" aria-label="Close">Close</button></div><div class="cd-tabs" role="tablist"><button type="button" role="tab" data-tab="slot" aria-selected="true">slot_jhk.v</button></div><div class="cpane" data-pane="slot"><div class="cmeta">Top module, Controller (8-state FSM), Datapath, and the testbench used for the simulation waveform. <a href="/assets/code/slot_jhk.v" download>Download</a></div><pre><code>module slot_top (
+  input clk,
+  input reset,
+  input pg,
+  input ps,
+  input pe,
+  input dg,
+  input ds,
+  input de,
+  input mod,
+  input [9:0] slot_b,
+  
+  output s_f,
+  output s_d,
+  output [9:0] slot_n
+);
+  wire load_1, load_2_1, load_2_e, load_3, load_e, c_u, s_e, en_1, en_2, en_3; // control signals
+  wire enter_ok, ev, has_1, has_2, has_3, has_e, button, t_d; // status signals
+  
+  slot_controller controller (
+    .load_1(load_1),
+    .load_2_1(load_2_1),
+    .load_2_e(load_2_e),
+    .load_3(load_3),
+    .load_e(load_e),
+    .c_u(c_u),
+    .s_e(s_e),
+    .s_f(s_f),
+    .s_d(s_d),
+    .en_1(en_1),
+    .en_2(en_2),
+    .en_3(en_3),
+    .enter_ok(enter_ok),
+    .ev(ev),
+    .has_1(has_1),
+    .has_2(has_2),
+    .has_3(has_3),
+    .has_e(has_e),
+    .t_d(t_d),
+    .button(button),
+    .clk(clk),
+    .reset(reset)
+  );
+  
+  slot_datapath datapath (
+    .enter_ok(enter_ok),
+    .ev(ev),
+    .has_1(has_1),
+    .has_2(has_2),
+    .has_3(has_3),
+    .has_e(has_e),
+    .button(button),
+    .t_d(t_d),
+    .slot_n(slot_n),
+    .slot_b(slot_b),
+    .load_1(load_1),
+    .load_2_1(load_2_1),
+    .load_2_e(load_2_e),
+    .load_3(load_3),
+    .load_e(load_e),
+    .c_u(c_u),
+    .s_e(s_e),
+    .s_f(s_f),
+    .s_d(s_d),
+    .en_1(en_1),
+    .en_2(en_2),
+    .en_3(en_3),
+    .clk(clk),
+    .reset(reset),
+    .pg(pg),
+    .ps(ps),
+    .pe(pe),
+    .dg(dg),
+    .ds(ds),
+    .de(de),
+    .mod(mod)
+  );
+  
+endmodule
+
+module slot_controller (
+ output reg load_1, load_2_1, load_2_e, load_3, load_e, c_u, s_e, s_f, s_d, en_1, en_2, en_3,
+ input enter_ok, ev, has_1, has_2, has_3, has_e, t_d, button, clk, reset
+);
+
+  reg s0, s1, s2, s3, s4, s5, s6, s7;
+
+  always @ (posedge clk, negedge reset) begin
+    s0 &lt;= 1&#x27;b0;
+    s1 &lt;= 1&#x27;b0;
+    s2 &lt;= 1&#x27;b0;
+    s3 &lt;= 1&#x27;b0;
+    s4 &lt;= 1&#x27;b0;
+    s5 &lt;= 1&#x27;b0;
+   	s6 &lt;= 1&#x27;b0;
+    s7 &lt;= 1&#x27;b0;
+    if (!reset) begin
+      s0 &lt;= 1&#x27;b0;
+      s1 &lt;= 1&#x27;b0;
+      s2 &lt;= 1&#x27;b0;
+      s3 &lt;= 1&#x27;b0;
+      s4 &lt;= 1&#x27;b0;
+     	s5 &lt;= 1&#x27;b0;
+     	s6 &lt;= 1&#x27;b0;
+      s7 &lt;= 1&#x27;b0;
+    end
+    else begin
+      begin
+        if (button)                                    s0 &lt;= 1&#x27;b1; // new
+      end 
+      begin
+        if (s0)
+        begin
+          if (enter_ok)                                s1 &lt;= 1&#x27;b1;
+          else                                         s7 &lt;= 1&#x27;b1;
+        end
+      end
+      begin 
+        if (s1) 
+     	  begin
+          if (has_1)                                   s6 &lt;= 1&#x27;b1;
+          if (((~ev)&amp;&amp;(~has_1))||((ev&amp;&amp;(~has_1)&amp;&amp;s4))) s2 &lt;= 1&#x27;b1;
+          if (ev&amp;&amp;(~has_1)&amp;&amp;(~s4))                     s4 &lt;= 1&#x27;b1;
+        end
+      end
+      begin
+        if (s2)
+        begin
+          if (has_2)                                   s6 &lt;= 1&#x27;b1;
+      	  	if (~has_2)                                  s3 &lt;= 1&#x27;b1;
+        end
+     	end
+      begin
+        if (s3)
+        begin
+          if (has_3)                                   s6 &lt;= 1&#x27;b1;
+      	  	if (~has_3)                                  s7 &lt;= 1&#x27;b1;
+        end
+      end
+      begin
+        if (s4)
+        begin
+          if (t_d)                                     s5 &lt;= 1&#x27;b1;
+       	  if (~t_d)                                    s4 &lt;= 1&#x27;b1;
+        end
+   	  end
+      begin
+        if (s5)
+        begin
+          if (has_e)                                   s6 &lt;= 1&#x27;b1;
+       	  if (~has_e)                                  s2 &lt;= 1&#x27;b1;
+        end
+      end
+    end
+  end
+
+  always @ (s0, s1, s2, s3, s4, s5, s6, s7, button, enter_ok, ev, has_1, has_2, has_3, has_e) begin
+    load_1 &lt;= 1&#x27;b0; 
+    load_2_1 &lt;= 1&#x27;b0;
+    load_2_e &lt;= 1&#x27;b0;
+    load_3 &lt;= 1&#x27;b0;
+    load_e &lt;= 1&#x27;b0;
+    c_u &lt;= 1&#x27;b0;
+    s_e &lt;= 1&#x27;b0; // new
+    s_f &lt;= 1&#x27;b0;
+    s_d &lt;= 1&#x27;b0;
+    if (button)                                load_1 &lt;= 1&#x27;b1;
+    if (s1&amp;&amp;(~ev)&amp;&amp;(~has_1))                   load_2_1 &lt;= 1&#x27;b1; // new load_2
+    if (s5&amp;&amp;(~has_e))                          load_2_e &lt;= 1&#x27;b1;
+    if (s2&amp;&amp;(~has_2))                          load_3 &lt;= 1&#x27;b1;
+    if (s1&amp;&amp;ev&amp;&amp;(~has_1))                      load_e &lt;= 1&#x27;b1;
+   	if (s4)                                    c_u &lt;= 1&#x27;b1;
+    if (s5)                                    s_e &lt;= 1&#x27;b1;
+    if (s6)                                    s_d &lt;= 1&#x27;b1;
+    if (s7)                                    s_f &lt;= 1&#x27;b1;
+  end
+
+  always @ (s1, s2, s3) begin
+    en_1 &lt;= 1&#x27;b0;
+    en_2 &lt;= 1&#x27;b0;
+    en_3 &lt;= 1&#x27;b0;
+    if (s1) en_1 &lt;= 1&#x27;b1;
+    if (s2) en_2 &lt;= 1&#x27;b1;
+    if (s3) en_3 &lt;= 1&#x27;b1;
+  end
+
+endmodule
+
+module slot_datapath (
+  output enter_ok, ev, has_1, has_2, has_3, has_e, button,
+  output reg t_d,
+  output reg [9:0] slot_n,
+  input [9:0] slot_b,
+  input load_1, load_2_1, load_2_e, load_3, load_e, c_u, s_e, s_f, s_d, en_1, en_2, en_3, clk, reset,
+  input pg, ps, pe, dg, ds, de, mod
+);
+
+  reg [2:0] REG1, REG2, REG3, REGE;
+  reg [2:0] car;
+  parameter pg_n=3&#x27;b001, ps_n=3&#x27;b010, pe_n=3&#x27;b011, dg_n=3&#x27;b100, ds_n=3&#x27;b101, de_n=3&#x27;b110;
+  reg [3:0] priority1, priority2, priority3;
+  reg [15:0] decoder1, decoder2, decoder3;
+  reg [9:0] MUX1, MUX2, MUX3;
+  reg [3:0] counter;
+  reg [1:0] car_2, car_1, car_0;
+  parameter s00=2&#x27;b00, s01=2&#x27;b01, s10=2&#x27;b10;
+  reg [2:0] car_in;
+  
+  wire slot_7, slot_9; //new
+  wire [9:0] pg_1, pg_2, pg_3, ps_1, ps_2, ps_3, pe_1, pe_2, pe_3, dg_1, dg_2, dg_3, ds_1, ds_2, ds_3, de_1, de_2, de_3;
+  wire [9:0] AND1, AND2, AND3;
+  
+  wire g_0 = (!slot_n[1])||(!slot_n[3])||(!slot_n[5])||(!slot_n[6])||(!slot_n[8]);
+  wire s_0 = (!slot_n[4]);
+  wire d_0 = (!slot_n[0])||(!slot_n[2]);
+  
+  assign ev = (REG1==pe_n)||(REG1==de_n);
+  assign enter_ok = ((REG1==pg_n)&amp;&amp;g_0)||((REG1==ps_n)&amp;&amp;(g_0||s_0))||((REG1==dg_n)&amp;&amp;(g_0||d_0))||((REG1==ds_n)&amp;&amp;(g_0||d_0||s_0))||(REG1==pe_n)||(REG1==de_n);
+  
+  assign has_1 = |AND1;
+  assign has_2 = |AND2;
+  assign has_3 = |AND3;
+  assign has_e = slot_7||slot_9;
+  
+  assign AND1=MUX1&amp;(~slot_n);
+  assign AND2=MUX2&amp;(~slot_n);
+  assign AND3=MUX3&amp;(~slot_n);
+  
+  assign slot_7 = s_e&amp;&amp;(!slot_n[7]);
+  assign slot_9 = s_e&amp;&amp;(!slot_n[9]);
+  
+  assign button = |car_in;
+  
+  //              j[9]  i[8]  h[7]  g[6]  f[5]  e[4]  d[3]  c[2]  b[1]  a[0]
+  assign pg_1 = { 1&#x27;b0, 1&#x27;b1, 1&#x27;b0, 1&#x27;b1, ~mod, 1&#x27;b0, ~mod, 1&#x27;b0, ~mod, 1&#x27;b0 };
+  assign pg_2 = { 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0 };
+  assign pg_3 = { 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0 };
+
+  assign ps_1 = { 1&#x27;b0, 1&#x27;b1, 1&#x27;b0, 1&#x27;b1, ~mod, 1&#x27;b0, ~mod, ~mod, ~mod, 1&#x27;b0 };
+  assign ps_2 = { 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0,  mod, 1&#x27;b0,  mod,  mod,  mod, 1&#x27;b0 };
+  assign ps_3 = { 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0 };
+
+  assign pe_1 = { 1&#x27;b1, 1&#x27;b0, 1&#x27;b1, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0 };
+  assign pe_2 = { 1&#x27;b0, 1&#x27;b1, 1&#x27;b0, 1&#x27;b1, ~mod, 1&#x27;b0, ~mod, 1&#x27;b0, ~mod, 1&#x27;b0 };
+  assign pe_3 = { 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0 };
+
+  assign dg_1 = { 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, ~mod, 1&#x27;b0, ~mod };
+  assign dg_2 = { 1&#x27;b0, ~mod, 1&#x27;b0, ~mod, ~mod, 1&#x27;b0, ~mod,  mod, ~mod,  mod };
+  assign dg_3 = { 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0 };
+
+  assign ds_1 = { 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, ~mod, 1&#x27;b0, ~mod };
+  assign ds_2 = { 1&#x27;b0, ~mod, 1&#x27;b0, ~mod, ~mod, ~mod, ~mod,  mod, ~mod,  mod };
+  assign ds_3 = { 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0 };
+
+  assign de_1 = { 1&#x27;b1, 1&#x27;b0, 1&#x27;b1, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0 };
+  assign de_2 = { 1&#x27;b0,  mod, 1&#x27;b0,  mod, 1&#x27;b0, 1&#x27;b0, 1&#x27;b0, ~mod, 1&#x27;b0, ~mod };
+  assign de_3 = { 1&#x27;b0, ~mod, 1&#x27;b0, ~mod, 1&#x27;b1, 1&#x27;b0, 1&#x27;b1,  mod, 1&#x27;b1,  mod };
+
+
+  
+  always @ (pg, ps, pe, dg, ds, de) begin
+                 car &lt;= 3&#x27;b000;
+    if (pg)      car &lt;= pg_n;
+    else if (ps) car &lt;= ps_n;
+    else if (pe) car &lt;= pe_n;
+    else if (dg) car &lt;= dg_n;
+    else if (ds) car &lt;= ds_n;
+    else if (de) car &lt;= de_n;
+    else         car &lt;= 3&#x27;b000;
+  end
+  
+  always @ (posedge clk, negedge reset) begin
+    if (!reset) car_2 &lt;= s00;
+    else
+      case (car_2)
+        s00: if (car[2]) car_2 &lt;= s01;
+             else        car_2 &lt;= s00;
+        s01: if (car[2]) car_2 &lt;= s10;
+             else        car_2 &lt;= s00;
+        s10: if (car[2]) car_2 &lt;= s10;
+             else        car_2 &lt;= s00;
+      endcase
+  end
+  always @ (car_2) begin
+    if (car_2==s01) car_in[2] &lt;= 1&#x27;b1;
+    else            car_in[2] &lt;= 1&#x27;b0;
+  end
+  
+  always @ (posedge clk, negedge reset) begin
+    if (!reset) car_1 &lt;= s00;
+    else
+      case (car_1)
+        s00: if (car[1]) car_1 &lt;= s01;
+             else        car_1 &lt;= s00;
+        s01: if (car[1]) car_1 &lt;= s10;
+             else        car_1 &lt;= s00;
+        s10: if (car[1]) car_1 &lt;= s10;
+             else        car_1 &lt;= s00;
+      endcase
+  end
+  always @ (car_1) begin
+    if (car_1==s01) car_in[1] &lt;= 1&#x27;b1;
+    else            car_in[1] &lt;= 1&#x27;b0;
+  end
+  
+  always @ (posedge clk, negedge reset) begin
+    if (!reset) car_0 &lt;= s00;
+    else
+      case (car_0)
+        s00: if (car[0]) car_0 &lt;= s01;
+             else        car_0 &lt;= s00;
+        s01: if (car[0]) car_0 &lt;= s10;
+             else        car_0 &lt;= s00;
+        s10: if (car[0]) car_0 &lt;= s10;
+             else        car_0 &lt;= s00;
+      endcase
+  end
+  always @ (car_0) begin
+    if (car_0==s01) car_in[0] &lt;= 1&#x27;b1;
+    else            car_in[0] &lt;= 1&#x27;b0;
+  end
+  
+  always @ (posedge clk, negedge reset) begin
+    if (!reset) 
+      begin
+      REG1&lt;=3&#x27;b000;
+      REG2&lt;=3&#x27;b000;
+      REG3&lt;=3&#x27;b000;
+      REGE&lt;=3&#x27;b000;
+      end
+    else 
+    begin
+      begin 
+        if (load_1)     REG1 &lt;= car_in;
+        else            REG1 &lt;= REG1;
+      end
+      begin
+        if (load_e)     REGE &lt;= REG1;
+        else            REGE &lt;= REGE;
+      end
+      begin
+        if (load_2_1)   REG2 &lt;= REG1;
+        else         
+          if (load_2_e) REG2 &lt;= REGE;
+          else          REG2 &lt;= REG2;
+      end
+      begin
+        if (load_3)     REG3 &lt;= REG2;
+        else            REG3 &lt;= REG3;
+      end
+    end
+  end
+  
+  always @ (REG1, pg_1, ps_1, pe_1, dg_1, ds_1, de_1) begin
+    case (REG1)
+      pg_n: MUX1 &lt;= pg_1;
+      ps_n: MUX1 &lt;= ps_1;
+      pe_n: MUX1 &lt;= pe_1;
+      dg_n: MUX1 &lt;= dg_1;
+      ds_n: MUX1 &lt;= ds_1;
+      de_n: MUX1 &lt;= de_1;
+      default MUX1 &lt;= 10&#x27;b0;
+    endcase
+  end
+  
+  always @ (REG2, pg_2, ps_2, pe_2, dg_2, ds_2, de_2) begin
+    case (REG2)
+      pg_n: MUX2 &lt;= pg_2;
+      ps_n: MUX2 &lt;= ps_2;
+      pe_n: MUX2 &lt;= pe_2;
+      dg_n: MUX2 &lt;= dg_2;
+      ds_n: MUX2 &lt;= ds_2;
+      de_n: MUX2 &lt;= de_2;
+      default MUX2 &lt;= 10&#x27;b0;
+    endcase
+  end
+  
+  always @ (REG3, pg_3, ps_3, pe_3, dg_3, ds_3, de_3) begin
+    case (REG3)
+      pg_n: MUX3 &lt;= pg_3;
+      ps_n: MUX3 &lt;= ps_3;
+      pe_n: MUX3 &lt;= pe_3;
+      dg_n: MUX3 &lt;= dg_3;
+      ds_n: MUX3 &lt;= ds_3;
+      de_n: MUX3 &lt;= de_3;
+      default MUX3 &lt;= 10&#x27;b0;
+    endcase
+  end
+
+  always @ (AND1) begin
+    priority1 &lt;= 4&#x27;b1111;
+    if (AND1[0]==1&#x27;b1)      priority1 &lt;= 4&#x27;b0000;
+    else if (AND1[1]==1&#x27;b1) priority1 &lt;= 4&#x27;b0001;
+    else if (AND1[2]==1&#x27;b1) priority1 &lt;= 4&#x27;b0010;
+    else if (AND1[3]==1&#x27;b1) priority1 &lt;= 4&#x27;b0011;
+    else if (AND1[4]==1&#x27;b1) priority1 &lt;= 4&#x27;b0100;
+    else if (AND1[5]==1&#x27;b1) priority1 &lt;= 4&#x27;b0101;
+    else if (AND1[6]==1&#x27;b1) priority1 &lt;= 4&#x27;b0110;
+    else if (AND1[7]==1&#x27;b1) priority1 &lt;= 4&#x27;b0111;
+    else if (AND1[8]==1&#x27;b1) priority1 &lt;= 4&#x27;b1000;
+    else if (AND1[9]==1&#x27;b1) priority1 &lt;= 4&#x27;b1001;
+  end
+  
+  always @ (AND2) begin
+    priority2 &lt;= 4&#x27;b1111;
+    if (AND2[0]==1&#x27;b1)      priority2 &lt;= 4&#x27;b0000;
+    else if (AND2[1]==1&#x27;b1) priority2 &lt;= 4&#x27;b0001;
+    else if (AND2[2]==1&#x27;b1) priority2 &lt;= 4&#x27;b0010;
+    else if (AND2[3]==1&#x27;b1) priority2 &lt;= 4&#x27;b0011;
+    else if (AND2[4]==1&#x27;b1) priority2 &lt;= 4&#x27;b0100;
+    else if (AND2[5]==1&#x27;b1) priority2 &lt;= 4&#x27;b0101;
+    else if (AND2[6]==1&#x27;b1) priority2 &lt;= 4&#x27;b0110;
+    else if (AND2[7]==1&#x27;b1) priority2 &lt;= 4&#x27;b0111;
+    else if (AND2[8]==1&#x27;b1) priority2 &lt;= 4&#x27;b1000;
+    else if (AND2[9]==1&#x27;b1) priority2 &lt;= 4&#x27;b1001;
+  end
+  
+  always @ (AND3) begin
+    priority3 &lt;= 4&#x27;b1111;
+    if (AND3[0]==1&#x27;b1)      priority3 &lt;= 4&#x27;b0000;
+    else if (AND3[1]==1&#x27;b1) priority3 &lt;= 4&#x27;b0001;
+    else if (AND3[2]==1&#x27;b1) priority3 &lt;= 4&#x27;b0010;
+    else if (AND3[3]==1&#x27;b1) priority3 &lt;= 4&#x27;b0011;
+    else if (AND3[4]==1&#x27;b1) priority3 &lt;= 4&#x27;b0100;
+    else if (AND3[5]==1&#x27;b1) priority3 &lt;= 4&#x27;b0101;
+    else if (AND3[6]==1&#x27;b1) priority3 &lt;= 4&#x27;b0110;
+    else if (AND3[7]==1&#x27;b1) priority3 &lt;= 4&#x27;b0111;
+    else if (AND3[8]==1&#x27;b1) priority3 &lt;= 4&#x27;b1000;
+    else if (AND3[9]==1&#x27;b1) priority3 &lt;= 4&#x27;b1001;
+  end
+
+  always @ (priority1, en_1) begin
+    if (en_1) begin
+        case (priority1)
+            4&#x27;d0:  decoder1 &lt;= 16&#x27;b0000000000000001;
+            4&#x27;d1:  decoder1 &lt;= 16&#x27;b0000000000000010;
+            4&#x27;d2:  decoder1 &lt;= 16&#x27;b0000000000000100;
+            4&#x27;d3:  decoder1 &lt;= 16&#x27;b0000000000001000;
+            4&#x27;d4:  decoder1 &lt;= 16&#x27;b0000000000010000;
+            4&#x27;d5:  decoder1 &lt;= 16&#x27;b0000000000100000;
+            4&#x27;d6:  decoder1 &lt;= 16&#x27;b0000000001000000;
+            4&#x27;d7:  decoder1 &lt;= 16&#x27;b0000000010000000;
+            4&#x27;d8:  decoder1 &lt;= 16&#x27;b0000000100000000;
+            4&#x27;d9:  decoder1 &lt;= 16&#x27;b0000001000000000;
+            4&#x27;d10: decoder1 &lt;= 16&#x27;b0000010000000000;
+            4&#x27;d11: decoder1 &lt;= 16&#x27;b0000100000000000;
+            4&#x27;d12: decoder1 &lt;= 16&#x27;b0001000000000000;
+            4&#x27;d13: decoder1 &lt;= 16&#x27;b0010000000000000;
+            4&#x27;d14: decoder1 &lt;= 16&#x27;b0100000000000000;
+            4&#x27;d15: decoder1 &lt;= 16&#x27;b1000000000000000;
+        endcase
+    end
+    else           decoder1 &lt;= 16&#x27;b0;
+  end
+  
+  always @ (priority2, en_2) begin
+    if (en_2) begin
+        case (priority2)
+            4&#x27;d0:  decoder2 &lt;= 16&#x27;b0000000000000001;
+            4&#x27;d1:  decoder2 &lt;= 16&#x27;b0000000000000010;
+            4&#x27;d2:  decoder2 &lt;= 16&#x27;b0000000000000100;
+            4&#x27;d3:  decoder2 &lt;= 16&#x27;b0000000000001000;
+            4&#x27;d4:  decoder2 &lt;= 16&#x27;b0000000000010000;
+            4&#x27;d5:  decoder2 &lt;= 16&#x27;b0000000000100000;
+            4&#x27;d6:  decoder2 &lt;= 16&#x27;b0000000001000000;
+            4&#x27;d7:  decoder2 &lt;= 16&#x27;b0000000010000000;
+            4&#x27;d8:  decoder2 &lt;= 16&#x27;b0000000100000000;
+            4&#x27;d9:  decoder2 &lt;= 16&#x27;b0000001000000000;
+            4&#x27;d10: decoder2 &lt;= 16&#x27;b0000010000000000;
+            4&#x27;d11: decoder2 &lt;= 16&#x27;b0000100000000000;
+            4&#x27;d12: decoder2 &lt;= 16&#x27;b0001000000000000;
+            4&#x27;d13: decoder2 &lt;= 16&#x27;b0010000000000000;
+            4&#x27;d14: decoder2 &lt;= 16&#x27;b0100000000000000;
+            4&#x27;d15: decoder2 &lt;= 16&#x27;b1000000000000000;
+        endcase
+    end
+    else           decoder2 &lt;= 16&#x27;b0;
+  end
+  
+  always @ (priority3, en_3) begin
+    if (en_3) begin
+        case (priority3)
+            4&#x27;d0:  decoder3 &lt;= 16&#x27;b0000000000000001;
+            4&#x27;d1:  decoder3 &lt;= 16&#x27;b0000000000000010;
+            4&#x27;d2:  decoder3 &lt;= 16&#x27;b0000000000000100;
+            4&#x27;d3:  decoder3 &lt;= 16&#x27;b0000000000001000;
+            4&#x27;d4:  decoder3 &lt;= 16&#x27;b0000000000010000;
+            4&#x27;d5:  decoder3 &lt;= 16&#x27;b0000000000100000;
+            4&#x27;d6:  decoder3 &lt;= 16&#x27;b0000000001000000;
+            4&#x27;d7:  decoder3 &lt;= 16&#x27;b0000000010000000;
+            4&#x27;d8:  decoder3 &lt;= 16&#x27;b0000000100000000;
+            4&#x27;d9:  decoder3 &lt;= 16&#x27;b0000001000000000;
+            4&#x27;d10: decoder3 &lt;= 16&#x27;b0000010000000000;
+            4&#x27;d11: decoder3 &lt;= 16&#x27;b0000100000000000;
+            4&#x27;d12: decoder3 &lt;= 16&#x27;b0001000000000000;
+            4&#x27;d13: decoder3 &lt;= 16&#x27;b0010000000000000;
+            4&#x27;d14: decoder3 &lt;= 16&#x27;b0100000000000000;
+            4&#x27;d15: decoder3 &lt;= 16&#x27;b1000000000000000;
+        endcase
+    end
+    else           decoder3 &lt;= 16&#x27;b0;
+  end
+  
+  always @ (posedge clk, negedge reset) begin
+    if (!reset) 
+      slot_n &lt;= 10&#x27;b0;
+    else begin
+      slot_n[6:0] &lt;= slot_b[6:0] | slot_n[6:0] | decoder1[6:0] | decoder2[6:0] | decoder3[6:0];
+      slot_n[7]   &lt;= slot_b[7]   | slot_n[7]   | decoder1[7]   | decoder2[7]   | decoder3[7]  | slot_7;
+      slot_n[8]   &lt;= slot_b[8]   | slot_n[8]   | decoder1[8]   | decoder2[8]   | decoder3[8];
+      slot_n[9]   &lt;= slot_b[9]   | slot_n[9]   | decoder1[9]   | decoder2[9]   | decoder3[9]  | slot_9;
+    end
+  end
+  
+  always @ (posedge clk, negedge reset) begin
+    if (!reset) counter &lt;= 4&#x27;b0;
+    else if (c_u) counter &lt;= counter + 1&#x27;b1;
+    else          counter &lt;= 4&#x27;b0;
+  end
+  
+  always @ (counter) begin
+    if (counter==4&#x27;b0100) t_d &lt;= 1&#x27;b1;
+    else                  t_d &lt;= 1&#x27;b0;
+  end
+  
+endmodule
+
+module slot_top_tb;
+
+  reg clk;
+  reg reset;
+  reg pg, ps, pe, dg, ds, de, mod;
+  reg [9:0] slot_b;
+  wire s_f, s_d;
+  wire [9:0] slot_n;
+
+  slot_top uut (
+    .clk(clk),
+    .reset(reset),
+    .pg(pg),
+    .ps(ps),
+    .pe(pe),
+    .dg(dg),
+    .ds(ds),
+    .de(de),
+    .mod(mod),
+    .slot_b(slot_b),
+    .s_f(s_f),
+    .s_d(s_d),
+    .slot_n(slot_n)
+  );
+
+  always begin
+    #5 clk = ~clk;
+  end
+
+  initial begin
+    clk = 1;
+    reset = 0;
+    pg = 0;
+    ps = 0;
+    pe = 0;
+    dg = 0;
+    ds = 0;
+    de = 0;
+    mod = 0;
+    slot_b = 10&#x27;b00000_00000;
+    #20 reset = 1;
+    #10 slot_b = 10&#x27;b10010_10001;
+    #20 slot_b = 10&#x27;b00000_00000;
+    #18 pg = 1;
+    #22 pg = 0;
+    #30 mod = 1;
+    #10 ps = 1;
+    #10 ps = 0;
+    #10 pe = 1;
+    #15 pe = 0;
+    #10 de = 1;
+    #15 de = 0;
+    #10 ds = 1;
+    #15 ds = 0;
+    #10 de = 1;
+    #15 de = 0;
+    #10 dg = 1;
+    #15 dg = 0;
+    #10 pg = 1;
+    #15 pg = 0;
+    #10 pg = 1;
+    #15 pg = 0;
+  end
+endmodule</code></pre></div></dialog><div class="vfoot"><a class="backlink" href="/projects.html">← All projects</a></div>
 <footer class="site texture"><a href="/">← Portfolio Home</a> &nbsp;&nbsp; Hong-Kwon Jung © 2026</footer>
 <script src="/assets/site.js"></script>
 </body>
