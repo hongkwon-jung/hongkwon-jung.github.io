@@ -8,7 +8,7 @@ Portfolio of Hong-Kwon Jung (Electronic Materials Engineering, Kwangwoon Univers
 |---|---|---|
 | Room-Temperature NH3 Gas Sensor | 2026.01 – | [Page](https://hongkwon-jung.github.io/projects/nh3-gas-sensor/) |
 | 2T1C Display Pixel Based on Solution-Processed Oxide TFTs (Excellence Award) | 2026.03 – 2026.06 | [Page](https://hongkwon-jung.github.io/projects/izo-tft-process/) |
-| Review: ALD Oxide Semiconductors for 3D DRAM (Applied Physics Reviews, under review) | 2026.03 – 2026.10 | [Page](https://hongkwon-jung.github.io/projects/ald-3d-dram-review/) |
+| Review: ALD Oxide Semiconductors for 3D DRAM (InfoMat, submitted) | 2026.03 – 2026.10 | [Page](https://hongkwon-jung.github.io/projects/ald-3d-dram-review/) |
 | TCAD Modeling of WSe2/IGZO Gaussian Transistors (J. Phys. D 59, 335105) | 2025.01 – 2026.08 | [Page](https://hongkwon-jung.github.io/projects/gaussian-tcad/) |
 | Digital Circuit Design Projects | 2024.03 – 2025.12 | [Page](https://hongkwon-jung.github.io/projects/digital-circuit-design/) |
 
